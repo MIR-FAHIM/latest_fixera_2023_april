@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.latest_fixera_2023">
-   <application
-        android:label="latest_fixera_2023"
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:label="Fixera"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
