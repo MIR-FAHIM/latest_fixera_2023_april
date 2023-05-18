@@ -42,7 +42,7 @@ class NavDrawer extends StatelessWidget {
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Message Center',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
@@ -58,21 +58,21 @@ class NavDrawer extends StatelessWidget {
 
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Post a Project',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Projects',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Proposals',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
@@ -80,35 +80,35 @@ class NavDrawer extends StatelessWidget {
 
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Wallet',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Invoices',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Create Estimations',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Create work order',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Create Invoice',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
@@ -124,14 +124,14 @@ class NavDrawer extends StatelessWidget {
                   // ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Buy Credit',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'Packages',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
@@ -139,14 +139,14 @@ class NavDrawer extends StatelessWidget {
 
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'My Saved Items',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
                     navIcon: Icons.dashboard,
-                    navTitle: 'DashBoard',
+                    navTitle: 'How Its work',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },

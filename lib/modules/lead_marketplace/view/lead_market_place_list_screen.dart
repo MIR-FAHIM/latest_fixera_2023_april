@@ -43,10 +43,9 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Container(
-                          height:MediaQuery.of(context).size.height * .7,
+                          height:MediaQuery.of(context).size.height *.7,
                           child: ListView.builder(
                               itemCount: controller.leadMarketVendorList.length,
-
                               itemBuilder: (BuildContext context , index){
                                 var data = controller.leadMarketVendorList[index];
                                 return Card(
@@ -77,10 +76,14 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                               color: Colors.white,
                                               child: Center(
                                                   child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+
                                                     children: [
+
                                                       Row(
-                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        mainAxisAlignment: MainAxisAlignment.start,
                                                         children: [
+                                                          SizedBox(width: MediaQuery.of(context).size.width * .3,),
                                                           Container(
                                                             height: 20,
                                                             width: 20,
@@ -132,10 +135,15 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                             color: Colors.grey,
                                             child: Center(
                                               child: data.avatar == "0" ?
-                                              Image.asset(
-                                                "images/fixera_logo.png",
+                                              Container(
+                                                color: Colors.grey.shade200,
+
                                                 height: 60,
-                                                width: 120,
+                                                width: 60,
+                                                child: Center(
+                                                  child: Text("255x255", style: TextStyle(fontSize: 10),),
+                                                ),
+
                                               ) :
                                               Image.network(
                                                 data.avatar!,

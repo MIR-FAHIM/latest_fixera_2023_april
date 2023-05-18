@@ -1,13 +1,13 @@
 
 import 'package:flutter/material.dart';
-
+import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
 import 'package:latest_fixera_2023/modules/splash/controller/splash_screen_controller.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:latest_fixera_2023/widget/custom_appbar.dart';
-
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ContractorListScreen extends GetView<HomeViewController> {
   @override
@@ -32,84 +32,140 @@ class ContractorListScreen extends GetView<HomeViewController> {
                         padding: const EdgeInsets.all(4.0),
                         child: Container(
                           height:MediaQuery.of(context).size.height * .8,
-                          child: ListView.builder(
+                          child: ListView.separated(
                               itemCount: controller.contractorList.length,
+                              separatorBuilder:
+                                  (context, index) {
+                                return SizedBox(
+                                  height: 10,
+                                );
+                              },
                               itemBuilder: (BuildContext context , index){
                                 var data = controller.contractorList[index];
                                 return Card(
                                   elevation: 5,
 
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      height: MediaQuery.of(context).size.height * .24,
-                                      width: MediaQuery.of(context).size.width * .4,
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(Icons.verified_user, color: Colors.green,),
-                                              Text(data.name!),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(Icons.title, color:Colors.green),
-                                              Text(data.name!),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(Icons.price_check, color:Colors.green),
-                                              Text(data.name!.toString()),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(Icons.location_on_outlined, color:Colors.green),
-                                              Text(data.name!),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(Icons.copy, color:Colors.green),
-                                              Text(data.name!),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(Icons.punch_clock_rounded, color:Colors.green),
-                                              Text(data.name!),
-                                            ],
-                                          ),
-                                          SizedBox(height: 20,),
+                                  child:  badges.Badge(
+                                    badgeStyle: badges.BadgeStyle(
+                                      badgeColor: Colors.grey,
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    badgeContent: Icon(Icons.favorite_outline, color: Colors.white, size: 18,),
 
-                                          InkWell(
-                                            onTap: () {
-                                              //controller.visible.value++;
+                                
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                          height: MediaQuery.of(context).size.height * .13,
+                                          width: MediaQuery.of(context).size.width * .9,
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    height: 50,
+                                                    width: 50,
+                                                    color: Colors.grey,
+                                                    child: Center(
+                                                      child: data.avatar == "0" ?
+                                                      Container(
+                                                        color: Colors.grey.shade200,
 
-                                            },
-                                            child: AnimatedContainer(
-                                              duration: Duration(seconds: 2),
-                                              height:  30,
-                                              width:  100,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.primaryColor,
-                                                  borderRadius:
-                                                  BorderRadius.circular( 10)),
-                                              alignment: Alignment.center,
-                                              child:  Text(
-                                                "View Job",
-                                                style: TextStyle(
-                                                  color: AppColors.backgroundColor,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
+                                                        height: 60,
+                                                        width: 60,
+                                                        child: Center(
+                                                          child: Text("255x255", style: TextStyle(fontSize: 10),),
+                                                        ),
+
+                                                      ) :
+                                                      Image.network(
+                                                        data.avatar!,
+                                                        height: 60,
+                                                        width: 120,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10,),
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Icon(Icons.verified_user, color: Colors.green,),
+                                                          Text(data.name!),
+                                                        ],
+                                                      ),
+                                                      Container(
+
+                                                        height: 40,
+                                                        width: 200,
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(Icons.title, color:Colors.green),
+                                                            Expanded(child: Text(data.tagline!, maxLines: 2,)),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+
+                                                        children: [
+                                                          Container(
+                                                            width: 150,
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(Icons.price_check, color:Colors.green),
+                                                                Text("\$${data.hourlyRate!.toString()}"+ "/hr"),
+                                                              ],
+                                                            ),
+                                                          ),
+
+
+
+                                      Container(
+                                        height: 20,
+                                        width: 100,
+                                        child: RatingBar.builder(
+                                          initialRating: 3,
+                                          minRating: 1,
+                                          itemSize: 12,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                                          itemBuilder: (context, _) => Container(
+                                            height: 5,
+                                            width: 5,
+                                            child: Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                              size: 5,
                                             ),
                                           ),
+                                          onRatingUpdate: (rating) {
+                                            print(rating);
+                                          },
+                                        ),
+                                      )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
 
-                                        ],
-                                      ),
+
+
+
+
+
+
+                                            ],
+                                          ),
+                                        ),
+                                      
                                     ),
                                   ),
 

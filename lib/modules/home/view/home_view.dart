@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-
+import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
 import 'package:latest_fixera_2023/modules/splash/controller/splash_screen_controller.dart';
@@ -76,10 +76,14 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                           color: Colors.white,
                                           child: Center(
                                             child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+
                                               children: [
+
                                                 Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
                                                   children: [
+                                                    SizedBox(width: MediaQuery.of(context).size.width * .3,),
                                                     Container(
                                                       height: 20,
                                                       width: 20,
@@ -131,10 +135,15 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                           color: Colors.grey,
                                           child: Center(
                                             child: controller.featureContractorList[index].avatar == "0" ?
-                                            Image.asset(
-                                              "images/fixera_logo.png",
+                                            Container(
+                                              color: Colors.grey.shade200,
+
                                               height: 60,
-                                              width: 120,
+                                              width: 60,
+                                              child: Center(
+                                                child: Text("255x255", style: TextStyle(fontSize: 10),),
+                                              ),
+
                                             ) :
                                             Image.network(
                                               controller.featureContractorList[index].avatar!,
@@ -154,96 +163,118 @@ class HomeViewScreen extends GetView<HomeViewController> {
                     ),
                     SizedBox(height: 10,),
                     Text("Bid Now", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),),
-                    SizedBox(height: 10,),
+
 
                 Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Container(
-                        height: MediaQuery.of(context).size.height * .32,
-                        child:  ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                            itemCount: controller.latestJobList.length,
-                            itemBuilder: (BuildContext context , index){
-                            var data = controller.latestJobList[index];
-                              return Card(
-                                elevation: 5,
+                        height: MediaQuery.of(context).size.height * .35,
+                        child:  Center(
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                              itemCount: controller.latestJobList.length,
+                              separatorBuilder:
+                                  (context, index) {
+                                return SizedBox(
+                                  width: 15,
+                                );
+                              },
+                              itemBuilder: (BuildContext context , index){
+                              var data = controller.latestJobList[index];
+                                return Container(
+                                  height: MediaQuery.of(context).size.height * .3,
 
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.height * .2,
-                                    width: MediaQuery.of(context).size.width * .4,
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Icon(Icons.verified_user, color: Colors.green,),
-                                            Text(data.employer!),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.title, color:Colors.green),
-                                            Text(data.title!),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.price_check, color:Colors.green),
-                                            Text(data.price!.toString()),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.location_on_outlined, color:Colors.green),
-                                            Text(data.location!),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.copy, color:Colors.green),
-                                            Text(data.type!),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.punch_clock_rounded, color:Colors.green),
-                                            Text(data.duration!),
-                                          ],
-                                        ),
-                                        SizedBox(height: 20,),
 
-                                        InkWell(
-                                          onTap: () {
-                                            //controller.visible.value++;
+                                  child: Center(
+                                    child: badges.Badge(
+                                      badgeStyle: badges.BadgeStyle(
+                                        badgeColor: Colors.grey,
+                                        borderRadius: BorderRadius.circular(0),
+                                      ),
+                                      badgeContent: Icon(Icons.favorite_outline, color: Colors.white, size: 22,),
+                                      child: Card(
+                                        elevation: 5,
 
-                                          },
-                                          child: AnimatedContainer(
-                                            duration: Duration(seconds: 2),
-                                            height:  30,
-                                            width:  100,
-                                            decoration: BoxDecoration(
-                                                color: AppColors.primaryColor,
-                                                borderRadius:
-                                                BorderRadius.circular( 10)),
-                                            alignment: Alignment.center,
-                                            child:  Text(
-                                              "View Job",
-                                              style: TextStyle(
-                                                color: AppColors.backgroundColor,
-                                                fontSize: 12,
-                                              ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            height: MediaQuery.of(context).size.height * .25,
+                                            width: MediaQuery.of(context).size.width * .45,
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.verified_user, color: Colors.green,),
+                                                    Text(data.employer!),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.title, color:Colors.green),
+                                                    Text(data.title!),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.price_check, color:Colors.green),
+                                                    Text(data.price!.toString()),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.location_on_outlined, color:Colors.green),
+                                                    Text(data.location!),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.copy, color:Colors.green),
+                                                    Text(data.type!),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.punch_clock_rounded, color:Colors.green),
+                                                    Text(data.duration!),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 20,),
+
+                                                InkWell(
+                                                  onTap: () {
+                                                    //controller.visible.value++;
+
+                                                  },
+                                                  child: AnimatedContainer(
+                                                    duration: Duration(seconds: 2),
+                                                    height:  30,
+                                                    width:  100,
+                                                    decoration: BoxDecoration(
+                                                        color: AppColors.primaryColor,
+                                                        borderRadius:
+                                                        BorderRadius.circular( 10)),
+                                                    alignment: Alignment.center,
+                                                    child:  Text(
+                                                      "View Job",
+                                                      style: TextStyle(
+                                                        color: AppColors.backgroundColor,
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+
+                                              ],
                                             ),
                                           ),
                                         ),
 
-                                      ],
+                                      )
                                     ),
                                   ),
-                                ),
-
-                              );
-                            }),
+                                );
+                              }),
+                        ),
                       ),
                     )
 
