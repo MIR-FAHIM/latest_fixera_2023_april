@@ -116,6 +116,23 @@ class LoginView extends GetView<AuthController> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 25,
+              ),
+              Text("Forgot Password?"),
+              Spacer(),
+              Container(
+                height: 30,
+                  width: Get.width,
+                  color: AppColors.primaryColor,
+                  child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Do not have an account?", style: TextStyle(color: Colors.white),),
+                      Text("Create Account", style: TextStyle(color: Colors.white, fontSize: 15),),
+                    ],
+                  )))
 
             ],
           );

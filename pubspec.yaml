@@ -53,6 +53,14 @@ dev_dependencies:
   expandable: ^5.0.1
   get: ^4.6.5
   flutter_spinkit: ^5.1.0
+  webview_flutter: ^4.0.7
+  new_version_plus: ^0.0.9
+  flutter_downloader: ^1.10.4
+  permission_handler: ^10.2.0
+  path_provider: ^2.0.15
+  flutter_inappwebview: ^5.7.2+3
+  url_launcher: ^6.1.11
+  cached_network_image: ^3.2.3
 
 
 # For information on the generic Dart part of this file, see the

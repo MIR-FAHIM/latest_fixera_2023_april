@@ -7,6 +7,8 @@ abstract class Routes {
   static const BASE = _Paths.BASE;
   static const LOGIN = _Paths.LOGIN;
   static const LEADMARKET = _Paths.LEADMARKET;
+  static const POSTPROJECT = _Paths.POSTPROJECT;
+  static const CREATEESTIMATION = _Paths.CREATEESTIMATION;
 
   static const MENUPAGE = _Paths.MENUPAGE;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
@@ -18,6 +20,8 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
+  static const POSTPROJECT = '/post_project';
+  static const CREATEESTIMATION = '/estimation';
   static const BASE = '/base';
   static const LOGIN = '/login';
   static const CONTRACTORLISTVIEW = '/contractorlistview';

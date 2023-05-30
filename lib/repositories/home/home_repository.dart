@@ -5,6 +5,7 @@ import 'package:latest_fixera_2023/models/Home/browse_job_model.dart';
 import 'package:latest_fixera_2023/models/Home/get_contractor_model.dart';
 import 'package:latest_fixera_2023/models/Home/home_api_model.dart';
 import 'package:latest_fixera_2023/models/Home/lead_market_vendor_model.dart';
+import 'package:latest_fixera_2023/models/Home/see_vendor_profile_model.dart';
 import 'package:latest_fixera_2023/models/auth_model/login_model.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
 
@@ -59,6 +60,22 @@ class HomeRepository {
       },
     );
     return GetLeadMarketVendorModel.fromJson(response);
+  }
+
+  Future<SeeVendorProfileModel> seeVendorProfileRep(id) async {
+    print("api token is ${Get.find<AuthService>().apiToken}");
+    APIManager _manager = APIManager();
+    final response = await _manager.postAPICallWithHeader(
+      ApiUrl.seeVendorProfile,
+      {
+        "user_id": id.toString(),
+      },
+
+      {"Authorization": "Bearer ${Get.find<AuthService>().apiToken}",
+        "Accept": "application/json"
+      },
+    );
+    return SeeVendorProfileModel.fromJson(response);
   }
 
 

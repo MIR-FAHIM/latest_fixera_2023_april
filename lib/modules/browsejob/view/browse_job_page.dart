@@ -4,6 +4,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
 import 'package:latest_fixera_2023/modules/splash/controller/splash_screen_controller.dart';
+import 'package:latest_fixera_2023/modules/web_view/job_details/job_details_webview.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:latest_fixera_2023/widget/custom_appbar.dart';
@@ -114,6 +115,9 @@ class BrowseJobViewScreen extends GetView<HomeViewController> {
 
                                                           InkWell(
                                                             onTap: () {
+                                                              controller.jobURL.value = data.jobUrl!;
+                                                              controller.callWebController();
+                                                              Get.to(JobDetailsWebView());
                                                               //controller.visible.value++;
 
                                                             },

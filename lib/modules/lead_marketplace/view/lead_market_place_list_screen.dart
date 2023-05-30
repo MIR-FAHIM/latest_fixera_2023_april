@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
+import 'package:latest_fixera_2023/modules/lead_marketplace/view/see_vendor_profile.dart';
 import 'package:latest_fixera_2023/modules/splash/controller/splash_screen_controller.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
@@ -60,7 +61,7 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                             Container(
                                               height: 50,
                                               width: MediaQuery.of(context).size.width *9,
-                                              color: Colors.grey,
+                                              color: Colors.lightGreen.shade100,
                                               child: Center(
                                                 child: Image.asset(
                                                   "images/fixera_logo.png",
@@ -115,7 +116,12 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                                           SizedBox(width: 20,),
                                                           Container(height: 15, width: 2,color: Colors.black54,),
                                                           SizedBox(width: 20,),
-                                                          Text("Full Profile",style: TextStyle(fontSize: 14, color: Colors.blue),),
+                                                          InkWell(
+                                                            onTap: (){
+
+                                                             controller.seeVendorProfileController( data.id);
+                                                            },
+                                                              child: Text("Full Profile",style: TextStyle(fontSize: 14, color: Colors.blue),)),
 
                                                         ],
                                                       ),
@@ -145,10 +151,10 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                                 ),
 
                                               ) :
-                                              Image.network(
-                                                data.avatar!,
-                                                height: 60,
-                                                width: 120,
+                                              CachedNetworkImage(
+                                                imageUrl: "http://via.placeholder.com/350x150",
+                                                placeholder: (context, url) => CircularProgressIndicator(),
+                                                errorWidget: (context, url, error) => Icon(Icons.error),
                                               ),
                                             ),
                                           ),

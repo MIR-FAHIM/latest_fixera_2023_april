@@ -5,6 +5,10 @@ import 'package:latest_fixera_2023/modules/base/bindings/base_bindings.dart';
 import 'package:latest_fixera_2023/modules/base/view/base_screen.dart';
 import 'package:latest_fixera_2023/modules/browsejob/view/browse_job_page.dart';
 import 'package:latest_fixera_2023/modules/contractor/view/contractor_list.dart';
+import 'package:latest_fixera_2023/modules/drawer/create_estimation/binding/create_estimation_binding.dart';
+import 'package:latest_fixera_2023/modules/drawer/create_estimation/view/create_estimation.dart';
+import 'package:latest_fixera_2023/modules/drawer/post_a_project/binding/post_project_binding.dart';
+import 'package:latest_fixera_2023/modules/drawer/post_a_project/view/post_a_project.dart';
 import 'package:latest_fixera_2023/modules/home/binding/home_view_binding.dart';
 import 'package:latest_fixera_2023/modules/home/view/home_view.dart';
 import 'package:latest_fixera_2023/modules/lead_marketplace/view/lead_market_place_list_screen.dart';
@@ -39,6 +43,16 @@ class AppPages {
       name: _Paths.HOME,
       page: () =>  HomeViewScreen(),
       binding: HomeViewcreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.POSTPROJECT,
+      page: () =>  PostAProjectFormScreen(),
+      binding: PostProjectBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATEESTIMATION,
+      page: () =>  CreateEstimationFormScreen(),
+      binding: CreateEstimationBinding(),
     ),
     GetPage(
       name: _Paths.BROWSEJOB,

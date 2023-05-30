@@ -8,6 +8,7 @@ import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:latest_fixera_2023/widget/custom_appbar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ContractorListScreen extends GetView<HomeViewController> {
   @override
@@ -78,10 +79,10 @@ class ContractorListScreen extends GetView<HomeViewController> {
                                                         ),
 
                                                       ) :
-                                                      Image.network(
-                                                        data.avatar!,
-                                                        height: 60,
-                                                        width: 120,
+                                                      CachedNetworkImage(
+                                                        imageUrl: data.avatar,
+                                                        placeholder: (context, url) => CircularProgressIndicator(),
+                                                        errorWidget: (context, url, error) => Icon(Icons.error, color: Colors.white,),
                                                       ),
                                                     ),
                                                   ),

@@ -27,13 +27,16 @@ AppBar navAppBar() {
           Container(
             height: 30,
             width: 250,
-            color: Colors.transparent,
+            //color: Colors.white,
+
             child: TextFormField(
+
 
               maxLines: 1,
               controller: controller.searchController,
               decoration:  InputDecoration(
                 fillColor: Colors.white,
+                focusColor: Colors.white,
                 hoverColor: Colors.white,
                 focusedBorder:OutlineInputBorder(
                   borderSide:  BorderSide(color: Colors.white, width: 2.0),
@@ -45,7 +48,15 @@ AppBar navAppBar() {
                   Icons.search,
                   color: Colors.white,
                 ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                    width: 2.0,
+                  ),
+                ),
                 border: OutlineInputBorder(
+
                   borderSide:  BorderSide(color: Colors.white, width: 2.0),
 
                   borderRadius: BorderRadius.all(

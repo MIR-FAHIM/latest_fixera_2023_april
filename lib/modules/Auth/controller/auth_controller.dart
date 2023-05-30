@@ -41,7 +41,7 @@ class AuthController extends GetxController {
       } else {
         print("error ++++++++++++++");
         visible.value = 0;
-        Ui.errorSnackBar(message: "Please Check Your Credential");
+
       }
 
     });

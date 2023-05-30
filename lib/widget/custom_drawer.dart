@@ -5,9 +5,14 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
+import 'package:latest_fixera_2023/modules/web_view/message_center_web/message_center_webview.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
+import 'package:latest_fixera_2023/services/auth_services.dart';
+import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/widget/custom_drawer_tile.dart';
 import 'package:expandable/expandable.dart';
+
+import '../modules/web_view/dash_board/view/dashboard_view.dart';
 
 class NavDrawer extends StatelessWidget {
 
@@ -23,11 +28,56 @@ class NavDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              color: Colors.grey[300],
-              //height: Get.height * 0.2,
-              width: Get.width,
 
+
+
+
+
+            Center(
+              child: Container(
+                color: Colors.grey[300],
+                height: Get.height * 0.2,
+                width: Get.width,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 200,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Get.find<AuthService>().currentUser.value.userInfo!.avatar == "0"?
+                             CircleAvatar(
+                               backgroundColor: AppColors.primaryColor,
+                               radius: 30,
+                              // backgroundColor: AppColors.primaryColor,
+                               child: Image.asset("images/icons/user.png", ),
+                             ) : CircleAvatar(
+                            radius: 30,
+                            backgroundColor: AppColors.primaryColor,
+                            child: Image.network(Get.find<AuthService>().currentUser.value.userInfo!.avatar),
+                          ),
+                          Container(
+                            width: 100,
+                            child: Column(
+                              children: [
+                                SizedBox(height: Get.height*.06,),
+                                Text("${Get.find<AuthService>().currentUser.value.userInfo!.firstName}",
+                                  style: TextStyle(color: Colors.black, fontSize: 16),),
+                                Text("${Get.find<AuthService>().currentUser.value.userInfo!.lastName}",
+                                  style: TextStyle(color: Colors.black),),
+                                Text("Profile", style: TextStyle(color: Colors.blue, fontSize: 16),),
+
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+
+              ),
             ),
 
         Container(
@@ -41,10 +91,10 @@ class NavDrawer extends StatelessWidget {
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.message_outlined,
                     navTitle: 'Message Center',
                     onNavPress: () {
-                      Get.toNamed(Routes.HOME);
+                    Get.to(MessageCenterWebView());
                     },
                   ),
                   //   NavDrawerTile(
@@ -57,21 +107,21 @@ class NavDrawer extends StatelessWidget {
                   // ),
 
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.loyalty,
                     navTitle: 'Post a Project',
                     onNavPress: () {
-                      Get.toNamed(Routes.HOME);
+                      Get.toNamed(Routes.POSTPROJECT);
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.post_add,
                     navTitle: 'Projects',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.person_pin_outlined,
                     navTitle: 'Proposals',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
@@ -79,35 +129,35 @@ class NavDrawer extends StatelessWidget {
                   ),
 
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.wallet_giftcard_sharp,
                     navTitle: 'Wallet',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.payments_outlined,
                     navTitle: 'Invoices',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.payments_outlined,
                     navTitle: 'Create Estimations',
                     onNavPress: () {
-                      Get.toNamed(Routes.HOME);
+                      Get.toNamed(Routes.CREATEESTIMATION);
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.payments_outlined,
                     navTitle: 'Create work order',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.payments_outlined,
                     navTitle: 'Create Invoice',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
@@ -123,14 +173,14 @@ class NavDrawer extends StatelessWidget {
                   //   },
                   // ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.credit_card,
                     navTitle: 'Buy Credit',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.grain,
                     navTitle: 'Packages',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
@@ -138,7 +188,7 @@ class NavDrawer extends StatelessWidget {
                   ),
 
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.favorite,
                     navTitle: 'My Saved Items',
                     onNavPress: () {
                       Get.toNamed(Routes.HOME);
@@ -152,10 +202,10 @@ class NavDrawer extends StatelessWidget {
                     },
                   ),
                   NavDrawerTile(
-                    navIcon: Icons.dashboard,
+                    navIcon: Icons.how_to_reg,
                     navTitle: 'DashBoard',
                     onNavPress: () {
-                      Get.toNamed(Routes.HOME);
+                     Get.to(WebViewClass());
                     },
                   ),
                   // NavDrawerTile(

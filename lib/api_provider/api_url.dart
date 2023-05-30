@@ -8,6 +8,10 @@ class ApiUrl {
   static String homeApiList = '$baseUrl/contractor/home';
   static String browseJobList = '$baseUrl/search-results';
   static String getContactorList = '$baseUrl/search-results';
+  static String seeVendorProfile = '$baseUrl/vendor/profile';
+  static String vendorDashBoard = '$baseUrl/webview/package-lists/vendor';
+  static String messageCenterUrl = "$baseUrl/webview/message-center?token=";
+ // static String vendorDashBoard = '$baseUrl/webview/package-lists/vendor';
 
   static String changePass = '$baseUrl/changePass';
 }

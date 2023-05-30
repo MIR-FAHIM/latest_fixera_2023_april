@@ -4,10 +4,11 @@ import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
 import 'package:latest_fixera_2023/modules/splash/controller/splash_screen_controller.dart';
+import 'package:latest_fixera_2023/modules/web_view/job_details/job_details_webview.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:latest_fixera_2023/widget/custom_appbar.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeViewScreen extends GetView<HomeViewController> {
   @override
@@ -43,7 +44,7 @@ class HomeViewScreen extends GetView<HomeViewController> {
 
                     Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Container(
+                      child: controller.featureContractorList.value.isEmpty ? Center(child: CircularProgressIndicator(color: Colors.green,)):Container(
                         height:MediaQuery.of(context).size.height *.35,
                         child: ListView.builder(
                           itemCount: controller.featureContractorList.length,
@@ -111,11 +112,20 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                                   mainAxisAlignment: MainAxisAlignment.center,
 
                                                   children: [
-                                                    Text("Open Jobs", style: TextStyle(fontSize: 14, color: Colors.blue),),
+                                                    GestureDetector(
+                                                      onTap:(){
+                                                       // controller.jobURL.value = controller.featureContractorList[index].
+                                                       // Get.to(JobDetailsWebView());
+                                          },
+                                                        child: Text("Open Jobs", style: TextStyle(fontSize: 14, color: Colors.blue),)),
                                                     SizedBox(width: 20,),
                                                     Container(height: 15, width: 2,color: Colors.black54,),
                                                     SizedBox(width: 20,),
-                                                    Text("Full Profile",style: TextStyle(fontSize: 14, color: Colors.blue),),
+                                                    GestureDetector(
+                                                      onTap: (){
+                                                        controller.seeVendorProfileController( controller.featureContractorList[index].id);
+                                                      },
+                                                        child: Text("Full Profile",style: TextStyle(fontSize: 14, color: Colors.blue),)),
 
                                                   ],
                                                 ),
@@ -145,10 +155,10 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                               ),
 
                                             ) :
-                                            Image.network(
-                                              controller.featureContractorList[index].avatar!,
-                                              height: 60,
-                                              width: 120,
+                                            CachedNetworkImage(
+                                              imageUrl: controller.featureContractorList[index].avatar!,
+                                              placeholder: (context, url) => CircularProgressIndicator(color: Colors.green,),
+                                              errorWidget: (context, url, error) => Icon(Icons.error),
                                             ),
                                           ),
                                         ),
@@ -242,6 +252,10 @@ class HomeViewScreen extends GetView<HomeViewController> {
 
                                                 InkWell(
                                                   onTap: () {
+
+                                                    controller.jobURL.value = data.jobUrl!;
+                                                    controller.callWebController();
+                                                    Get.to(JobDetailsWebView());
                                                     //controller.visible.value++;
 
                                                   },
