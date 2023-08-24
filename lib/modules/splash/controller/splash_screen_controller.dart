@@ -15,7 +15,7 @@ class SplashscreenController extends GetxController {
     Timer(const Duration(seconds: 3), () {
       // Get.offAllNamed(Routes.BASE);
       if (Get.find<AuthService>().isAuth) {
-        Get.offAllNamed(Routes.LOGIN);
+        Get.offAllNamed(Routes.BASE);
       } else {
         Get.offAllNamed(Routes.LOGIN);
       }

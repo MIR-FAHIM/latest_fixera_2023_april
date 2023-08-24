@@ -1,21 +1,37 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:latest_fixera_2023/api_provider/api_exception.dart';
+import 'package:latest_fixera_2023/utils/ui_support.dart';
 
 
 class APIManager {
-  Future<dynamic> postAPICallWithHeader(String url, Map<String, String> param, Map<String, String> headerData) async {
+  Future<dynamic> postAPICallWithHeader(String url, Map<String, dynamic> param, Map<String, String> headerData) async {
     print("Calling API: $url");
     print("Calling parameters: $param");
 
     var responseJson;
     try {
       final response = await http.post(Uri.parse(url), body: param, headers: headerData);
-      print(response.body);
+      print("api provider bro bro bro bro ${response.body}");
+      var data = jsonDecode(response.body);
+      if(response.statusCode == 422){
+        Get.showSnackbar(Ui.errorSnackBar(
+            message:data["message"], title: 'Error'.tr));
+       return data;
+      } else if (response.statusCode == 400){
+        Get.showSnackbar(Ui.errorSnackBar(
+            message:data["message"], title: 'Error'.tr));
+      } else if (response.statusCode == 500){
+        Get.showSnackbar(Ui.errorSnackBar(
+            message:data["message"], title: 'Error'.tr));
+      }
       responseJson = _response(response);
-      print(responseJson);
+
+      print("hlw bro ++++++++++++++++++++$responseJson");
     } on SocketException catch (_) {
       throw FetchDataException('No Internet connection');
     }
@@ -46,47 +62,52 @@ class APIManager {
   Future<dynamic> multipartPostAPI(
       String url,
       Map<String, String> param,
-      var images,
+  List imageBytesList,
       Map<String, String> headerData,
       String parameterName,
       ) async {
     print("Calling API: $url");
     print("Calling parameters: ${param}");
-    print(images);
+   // print(images);
     print(headerData);
 
     var responseJson;
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.fields.addAll(param);
-
-      print('fgdf');
-
-      if (images.isNotEmpty) {
-        print('APIManager.multipartPostAPI');
-        for (var item in images) {
-          print(item.runtimeType);
+      print("Calling API 111111: $url");
+      if (imageBytesList.isNotEmpty) {
+        for (var item in imageBytesList) {
           String fileName = item.path.split("/").last;
           var stream = http.ByteStream(item.openRead());
 
           stream.cast();
-
+          print("Calling API 2222222: $url");
           print(stream);
           // get file length
 
           var length = await item.length(); //imageFile is your image file
 
+          print("image file name is $length");
+
           // multipart that takes file
-          var multipartFileSign = http.MultipartFile('image', stream, length, filename: fileName);
+          var multipartFileSign = http.MultipartFile("images", stream, length, filename: fileName);
 
           request.files.add(multipartFileSign);
         }
+      } else {
+        print("no image found in invoice create");
       }
+
+      print('fgdf');
+
+
       if (headerData.isNotEmpty) {
         print('APIManager.multipartPostAPI 2');
         request.headers.addAll(headerData);
       }
       print('APIManager.multipartPostAPI 3');
+
       http.StreamedResponse streamedResponse = await request.send();
       print('APIManager.multipartPostAPI 4');
       var response = await http.Response.fromStream(streamedResponse);

@@ -32,9 +32,9 @@ class Results {
   String type;
   Users users;
   List<Category> categories;
-  List<Language> locations;
-  List<Language> languages;
-  List<Language> skills;
+  List<LanguageContractor> locations;
+  List<LanguageContractor> languages;
+  List<LanguageContractor> skills;
   ProjectLength projectLength;
   String keyword;
   int usersTotalRecords;
@@ -67,9 +67,9 @@ class Results {
     type: json["type"],
     users: Users.fromJson(json["users"]),
     categories: List<Category>.from(json["categories"].map((x) => Category.fromJson(x))),
-    locations: List<Language>.from(json["locations"].map((x) => Language.fromJson(x))),
-    languages: List<Language>.from(json["languages"].map((x) => Language.fromJson(x))),
-    skills: List<Language>.from(json["skills"].map((x) => Language.fromJson(x))),
+    locations: List<LanguageContractor>.from(json["locations"].map((x) => LanguageContractor.fromJson(x))),
+    languages: List<LanguageContractor>.from(json["languages"].map((x) => LanguageContractor.fromJson(x))),
+    skills: List<LanguageContractor>.from(json["skills"].map((x) => LanguageContractor.fromJson(x))),
     projectLength: ProjectLength.fromJson(json["project_length"]),
     keyword: json["keyword"],
     usersTotalRecords: json["users_total_records"],
@@ -224,7 +224,7 @@ class HourlyRates {
   };
 }
 
-class Language {
+class LanguageContractor {
   int id;
   String title;
   String slug;
@@ -234,7 +234,7 @@ class Language {
   int? parent;
   String? flag;
 
-  Language({
+  LanguageContractor({
     required this.id,
     required this.title,
     required this.slug,
@@ -245,7 +245,7 @@ class Language {
     this.flag,
   });
 
-  factory Language.fromJson(Map<String, dynamic> json) => Language(
+  factory LanguageContractor.fromJson(Map<String, dynamic> json) => LanguageContractor(
     id: json["id"],
     title: json["title"],
     slug: json["slug"],
@@ -325,7 +325,7 @@ class Symbol {
 }
 
 class Users {
-  List<Datum> data;
+  List<DatumContractor> data;
   Pagination pagination;
 
   Users({
@@ -334,7 +334,7 @@ class Users {
   });
 
   factory Users.fromJson(Map<String, dynamic> json) => Users(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    data: List<DatumContractor>.from(json["data"].map((x) => DatumContractor.fromJson(x))),
     pagination: Pagination.fromJson(json["pagination"]),
   );
 
@@ -344,7 +344,7 @@ class Users {
   };
 }
 
-class Datum {
+class DatumContractor {
   int id;
   String name;
   String avatar;
@@ -355,7 +355,7 @@ class Datum {
   bool verifyStatus;
   String rating;
 
-  Datum({
+  DatumContractor({
     required this.id,
     required this.name,
     required this.avatar,
@@ -367,7 +367,7 @@ class Datum {
     required this.rating,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory DatumContractor.fromJson(Map<String, dynamic> json) => DatumContractor(
     id: json["id"],
     name: json["name"],
     avatar: json["avatar"],

@@ -49,7 +49,7 @@ class JobDetailsWebView extends GetView<HomeViewController> {
                   height: MediaQuery
                       .of(context)
                       .size
-                      .height * .953,
+                      .height * 4,
                   child: WebViewWidget(controller: controller.webController)
               ),
             ],

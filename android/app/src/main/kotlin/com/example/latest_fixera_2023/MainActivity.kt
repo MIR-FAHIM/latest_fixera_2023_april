@@ -1,4 +1,4 @@
-package com.example.latest_fixera_2023
+package com.ccs_asia.app
 
 import io.flutter.embedding.android.FlutterActivity
 

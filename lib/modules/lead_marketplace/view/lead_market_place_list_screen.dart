@@ -27,25 +27,20 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height * .15,
-                        width: MediaQuery.of(context).size.width *9,
-                        color: Colors.white,
-                        child: Center(
-                          child: Image.asset(
-                            "images/fixera_logo.png",
-                            height: 120,
-                            width: 120,
-                          ),
-                        ),
-                      ),
+
 
 
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Container(
                           height:MediaQuery.of(context).size.height *.7,
-                          child: ListView.builder(
+                          child:controller.leadMarketVendorList.isEmpty
+                              ? Container(
+                            child: Center(
+                              child: Text("No Data Found"),
+                            ),
+                          )
+                          :ListView.builder(
                               itemCount: controller.leadMarketVendorList.length,
                               itemBuilder: (BuildContext context , index){
                                 var data = controller.leadMarketVendorList[index];
@@ -63,11 +58,12 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                               width: MediaQuery.of(context).size.width *9,
                                               color: Colors.lightGreen.shade100,
                                               child: Center(
-                                                child: Image.asset(
-                                                  "images/fixera_logo.png",
-                                                  height: 60,
-                                                  width: 120,
-                                                ),
+                                               child: Text("CCS Asia")
+                                                // child: Image.asset(
+                                                //   "images/fixera_logo.png",
+                                                //   height: 60,
+                                                //   width: 120,
+                                                // ),
                                               ),
                                             ),
                                             Container(
@@ -142,14 +138,16 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                             child: Center(
                                               child: data.avatar == "0" ?
                                               Container(
-                                                color: Colors.grey.shade200,
+                                                  color: Colors
+                                                      .grey.shade200,
+                                                  height: 60,
+                                                  width: 60,
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
 
-                                                height: 60,
-                                                width: 60,
-                                                child: Center(
-                                                  child: Text("255x255", style: TextStyle(fontSize: 10),),
-                                                ),
-
+                                                        image: DecorationImage(image: AssetImage("images/img.png"))
+                                                    ),
+                                                  )
                                               ) :
                                               CachedNetworkImage(
                                                 imageUrl: "http://via.placeholder.com/350x150",
@@ -164,7 +162,8 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                   ),
 
                                 );
-                              }),
+                              })
+
                         ),
                       ),
 

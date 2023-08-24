@@ -15,12 +15,14 @@ initAllServices() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initAllServices();
-  runApp( GetMaterialApp(
+  runApp(
+      GetMaterialApp(
     debugShowCheckedModeBanner: false,
     title: "Fixera",
     initialRoute: AppPages.INITIAL,
     getPages: AppPages.routes,
-  ));
+  )
+  );
 }
 
 

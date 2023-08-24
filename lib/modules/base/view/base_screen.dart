@@ -94,11 +94,9 @@ class BaseView extends GetView<BaseController> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      if (Get.find<AuthService>().isAuth) {
+
                         controller.currentIndex.value = 1;
-                      } else {
-                        Get.toNamed(Routes.LOGIN);
-                      }
+
                     },
                     child: Container(
                       width: 70,
@@ -116,10 +114,16 @@ class BaseView extends GetView<BaseController> {
                           //       ? Colors.lightBlueAccent
                           //       : Colors.grey,
                           // ),
+                          Get.find<AuthService>().currentUser.value.userInfo!.roleName == "contractor" ?
                           Text(
                             'Browse Jobs'.tr,
                             style: TextStyle(
                               fontSize: 10,
+                                color: controller.currentIndex.value == 1 ? AppColors.primaryColor : Colors.grey, fontWeight: FontWeight.normal),
+                          ) : Text(
+                            'Browse Leads'.tr,
+                            style: TextStyle(
+                                fontSize: 10,
                                 color: controller.currentIndex.value == 1 ? AppColors.primaryColor : Colors.grey, fontWeight: FontWeight.normal),
                           ),
                         ],
@@ -189,7 +193,7 @@ class BaseView extends GetView<BaseController> {
                           //       : Colors.grey,
                           // ),
                           Text(
-                            'Lead Marketplace'.tr,
+                            'Construction'.tr,
                             style: TextStyle(
                                 fontSize: 10,
                                 color: controller.currentIndex.value == 3 ? AppColors.primaryColor : Colors.grey, fontWeight: FontWeight.normal),

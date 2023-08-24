@@ -7,6 +7,8 @@ import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:latest_fixera_2023/widget/custom_appbar.dart';
 
+import '../../../services/auth_services.dart';
+
 class SeeVendorProfile extends GetView<HomeViewController> {
   @override
   Widget build(BuildContext context) {
@@ -33,16 +35,18 @@ class SeeVendorProfile extends GetView<HomeViewController> {
                     width: MediaQuery.of(context).size.width * 9,
                     color: Colors.grey.shade100,
                     child: Center(
-                      child: Image.asset(
-                        "images/fixera_logo.png",
-                        height: 120,
-                        width: 120,
-                      ),
+                      child: Text("CCS Asia"),
+                      // child: Image.asset(
+                      //   "images/fixera_logo.png",
+                      //   height: 120,
+                      //   width: 120,
+                      // ),
                     ),
                   ),
                   ListTile(
-                    title: Text(controller.vendorName.value),
-                    subtitle: Text("Vendor"),
+                    title: controller.vendorName.value.isEmpty? Text("No Data") : Text(controller.vendorName.value),
+                    subtitle: Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+                        "contractor" ? Text("Contractor"):Text("Vendor") ,
                     leading: Image.asset("images/icons/user.png", height: 100,width: 100,),
                     trailing:  CircleAvatar(
                       radius: 14,
@@ -62,7 +66,7 @@ class SeeVendorProfile extends GetView<HomeViewController> {
                     color: Colors.lightGreen.shade100,
                     width: MediaQuery.of(context).size.width,
                     child: Center(
-                      child: Text(controller.vendorAbout.value,
+                      child: controller.vendorAbout.value.isEmpty ? Text("No Data"): Text(controller.vendorAbout.value,
                       maxLines: 5,),
                     ),
                   ),
@@ -74,7 +78,7 @@ class SeeVendorProfile extends GetView<HomeViewController> {
                     child: Container(
                       height: MediaQuery.of(context).size.height * .7,
                       width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
+                      child: controller.vendorJobList.length == 0 ? Center(child: Text("No Data")):ListView.builder(
                           itemCount: controller.vendorJobList.length,
                           itemBuilder: (BuildContext context, index) {
                             var data = controller.vendorJobList[index];

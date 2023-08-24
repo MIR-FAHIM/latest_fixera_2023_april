@@ -23,9 +23,9 @@ class SplashscreenView extends GetView<SplashscreenController> {
             // width: size.width * .35,
             Center(
               child: SizedBox(
-                height: size.width * .35,
-                width: size.width * .35,
-                child: Image.asset("images/fixera_logo.png"),
+                height: size.width * .5,
+                width: size.width * .7,
+                child: Image.asset("images/ccsasiabanner.png"),
               ),
             ),
 

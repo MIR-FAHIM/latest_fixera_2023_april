@@ -1,47 +1,87 @@
 import 'dart:async';
-
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
 import 'package:latest_fixera_2023/models/Home/browse_job_model.dart';
 import 'package:latest_fixera_2023/models/Home/get_contractor_model.dart';
 import 'package:latest_fixera_2023/models/Home/home_api_model.dart';
 import 'package:latest_fixera_2023/models/Home/lead_market_vendor_model.dart';
 import 'package:latest_fixera_2023/models/Home/see_vendor_profile_model.dart';
+import 'package:latest_fixera_2023/models/saved_model.dart';
 import 'package:latest_fixera_2023/modules/lead_marketplace/view/see_vendor_profile.dart';
 import 'package:latest_fixera_2023/repositories/home/home_repository.dart';
+import 'package:latest_fixera_2023/repositories/saved_rep.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
+import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../../repositories/auth_repositories/auth_repositories.dart';
+
 class HomeViewController extends GetxController {
   //TODO: Implement SplashscreenController
-  var searchController = TextEditingController();
+  var searchController = TextEditingController().obs;
+  final mySavedItemsListJobs = <JobSavedItems>[].obs;
+  final mySavedFreelancerListJobs = <FreelancerItems>[].obs;
+  final mySavedEmployerListJobs = <EmployeerItems>[].obs;
+  var searchTextController = TextEditingController().obs;
+  final contractorChecked =  false.obs;
+  final brwsJobChecked =  false.obs;
+  final marketPlaceChecked =  false.obs;
   final categoryList = <Categories>[].obs;
   final browseJobList = <JobData>[].obs;
-  final contractorList = <Datum>[].obs;
+  final contractorList = <DatumContractor>[].obs;
+  final filterdContractorList = [].obs;
+  final filterdMarketPlaceList = [].obs;
+  final filterdBrwsProjectList = [].obs;
   final leadMarketVendorList = <VendorDatum>[].obs;
   final vendorJobList = <Job>[].obs;
+  final contractorJobList = <Job>[].obs;
   final featureContractorList = <FeaturedContractors>[].obs;
   final latestJobList = <LatestJobs>[].obs;
   final latestJobLoad = false.obs;
   final vendorID = "".obs;
   final vendorName = "".obs;
+  final locationList = <LanguageContractor>[].obs;
+  final languageList = <LanguageContractor>[].obs;
+  final skillList = <LanguageContractor>[].obs;
   final jobURL = "".obs;
   final vendorAbout = "".obs;
   final vendorImage = "".obs;
   final vendorBanner = "".obs;
-  final vendorFav = false.obs;
-  var webController;
 
+  final vendorFav = false.obs;
+  //final vendorFav = false.obs;
+  var webController;
+  final attachments = [].obs;
+  final isHTML = false.obs;
+  final skillDrop = false.obs;
+  final locationDrop = false.obs;
+  final languageDrop = false.obs;
+  //List
+
+  final selectListOfSkill = [].obs;
+  final selectCardListInLocation =[].obs;
+  final selectCardListInLanguage = [].obs;
+
+  final recipientController = TextEditingController().obs;
+
+  final subjectController = TextEditingController().obs;
+
+  final bodyController = TextEditingController().obs;
   @override
   Future<void> onInit() async {
     getHomeApiList();
     browseJobListCOntroller();
     contractorListCOntroller();
     leadMarketVendorController();
-
+    mySavedItemController();
     super.onInit();
   }
 
@@ -49,8 +89,9 @@ class HomeViewController extends GetxController {
   void onReady() {
     super.onReady();
   }
-  callWebController(){
-     webController = WebViewController()
+
+  callWebController() {
+    webController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.white)
       ..setNavigationDelegate(
@@ -61,25 +102,78 @@ class HomeViewController extends GetxController {
           onPageStarted: (String url) async {
             //https://shopbasebd.com/public/uploads/shop/products/1684647182_L_2.jpeg
 
-
-
             // NavigationDecision.navigate;
-
           },
-          onPageFinished: (String url) {
-
-
-          },
+          onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
             return NavigationDecision.navigate;
           },
         ),
       )
-      ..loadRequest(Uri.parse("http://18.217.130.75/api/v1/webview/job/test-3?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTguMjE3LjEzMC43NS9hcGkvdjEvbG9naW4iLCJpYXQiOjE2ODQwNTY4ODYsImV4cCI6MTY4NjY0ODg4NiwibmJmIjoxNjg0MDU2ODg2LCJqdGkiOiI1VVVKM0dBTjNVRHhHd1RPIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.47D3G602EEUWomUew_B6RQEoeYrSYgHxCzeTim1kFxo"));
-
+      ..loadRequest(Uri.parse(
+          "https://ccsforasia.com/api/v1/webview/job/test-3?token=${Get.find<AuthService>().apiToken}"));
   }
 
+  addOrRemoveDataInSkillList(int id) {
+    if (selectListOfSkill.contains(id)) {
+      selectListOfSkill.remove(id);
+    } else {
+      selectListOfSkill.add(id);
+    }
+  }
+
+  searchListController(String query) {
+    if (query.isEmpty) {
+      contractorListCOntroller();
+      mySavedItemController();
+    } else {
+      if(contractorChecked.value == true){
+        filterdContractorList.value = contractorList
+            .where(
+                (item) => item.name!.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      } else if(marketPlaceChecked.value == true){
+        filterdMarketPlaceList.value = mySavedFreelancerListJobs
+            .where(
+                (item) => item.name!.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      } else {
+        filterdBrwsProjectList.value = mySavedItemsListJobs
+            .where(
+                (item) => item.title!.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
+
+    }
+  }
+
+  addOrRemoveDataInLocationlList(int id) {
+    if (selectCardListInLocation.contains(id)) {
+      selectCardListInLocation.remove(id);
+    } else {
+      selectCardListInLocation.add(id);
+    }
+  }
+  addOrRemoveDataInLaqnguageList(int id) {
+    if (selectCardListInLanguage.contains(id)) {
+      selectCardListInLanguage.remove(id);
+    } else {
+      selectCardListInLanguage.add(id);
+    }
+  }
+  callPublicController(String slug, int id, String status){
+    HomeRepository().callPublicRep(slug, id, status).then((value) {
+      if(value['error']== true){
+        Get.showSnackbar(Ui.errorSnackBar(
+            message: value['message'], title: 'Error'.tr));
+      } else {
+        getHomeApiList();
+      }
+
+    });
+
+  }
   getHomeApiList() {
     print("home api list working called -------");
     HomeRepository().homeApiList().then((value) {
@@ -103,12 +197,66 @@ class HomeViewController extends GetxController {
     });
   }
 
+  checkPaymentStatus({id, slug, status}){
+    print("check payment status working in started");
+    HomeRepository().checkPaymentStatusRep(id).then((value) {
+
+
+
+    Ui.showAwesomeDialog(
+        value["results"]["modal_header"], value["results"]["modal_body_message_one"] +value["results"]["modal_body_message_two"] + value["results"]["modal_body_message_three"],
+        AppColors.primaryColor, () {
+          callPublicController(slug, id, 'public').then((){
+            Get.back();
+          });
+
+    },
+      () {
+        callPublicController(slug, id, 'private').then((){
+          Get.back();
+        });
+    }
+
+        );
+
+
+      print("check payment status $value");
+    });
+  }
+  mySavedItemController() {
+    print("save list api list working called -------");
+    SavedRepRepository().mySavedItem().then((value) {
+
+      mySavedItemsListJobs.value = value.results!.jobs!;
+      mySavedFreelancerListJobs.value = value.results!.savedFreelancers!;
+      mySavedEmployerListJobs.value = value.results!.savedEmployers!;
+
+      print("saved list length is ${mySavedItemsListJobs.length}");
+    });
+  }
+  makeFavCOntroller(
+      id,
+    favId, type) {
+    print("makeFavCOntroller working called -----${Get.find<AuthService>().currentUser.value.userInfo!.id} and  $favId------");
+    HomeRepository().makeFavRep(Get.find<AuthService>().currentUser.value.userInfo!.id,favId, type).then((value) {
+      getHomeApiList();
+      mySavedItemController();
+      contractorListCOntroller();
+      browseJobListCOntroller();
+
+    });
+  }
+
   contractorListCOntroller() {
     print("contractor api list working called -------");
     HomeRepository().getContractorList().then((value) {
       print(
           "browse hlw bro +++++ ${value.results!.users!.data!.length.toString()}");
-      contractorList.value = value.results!.users!.data!.map((datum) => datum).toList();
+      contractorList.value =
+          value.results!.users!.data!.map((datum) => datum).toList();
+      languageList.value = value.results.languages!;
+      skillList.value = value.results.skills!;
+      locationList.value = value.results.locations!;
 
       print("browse list length is ${browseJobList.length}");
     });
@@ -119,17 +267,17 @@ class HomeViewController extends GetxController {
     HomeRepository().getLeadListMarket().then((value) {
       print(
           "browse hlw bro +++++ ${value.results!.users!.data!.length.toString()}");
-      leadMarketVendorList.value = value.results!.users!.data!.map((datum) => datum).toList();
+      leadMarketVendorList.value = value.results.users!.data;
 
-      print("browse list length is ${browseJobList.length}");
+
+      print("leadMarketVendorList list length is ${leadMarketVendorList.length}");
     });
   }
-
+ //profile
   seeVendorProfileController(ids) {
     print("see vendor profile working called -------");
     HomeRepository().seeVendorProfileRep(ids).then((value) {
-      print(
-          "vendor job hlw bro +++++ ${value.results!.id!.toString()}");
+      print("vendor job hlw bro +++++ ${value.results!.id!.toString()}");
       vendorName.value = value.results.name!;
       vendorImage.value = value.results.avatar;
       vendorBanner.value = value.results.banner;
@@ -140,15 +288,105 @@ class HomeViewController extends GetxController {
 
       print("vendor job list length is ${vendorJobList.length}");
 
-      if(value.error == false){
+      if (value.error == false) {
         Get.to(SeeVendorProfile());
       } else {
         Get.showSnackbar(Ui.errorSnackBar(
-            message:"The Vendor has no profile to show", title: 'Error'.tr));
+            message: "The Vendor has no profile to show", title: 'Error'.tr));
       }
-
-
-
     });
+  }
+  seeContractorProfileController(ids) {
+    print("see vendor profile working called -------");
+    HomeRepository().seeContractorProfileRep(ids).then((value) {
+      print("vendor job hlw bro +++++ ${value.results!.id!.toString()}");
+      vendorName.value = value.results.name!;
+      vendorImage.value = value.results.avatar;
+      vendorBanner.value = value.results.banner;
+      vendorAbout.value = value.results.about;
+      vendorFav.value = value.results.isFavourite;
+
+      //contractorList.value = value.results!.projects!;
+
+      print("vendor job list length is ${vendorJobList.length}");
+
+      if (value.error == false) {
+        Get.to(SeeVendorProfile());
+      } else {
+        Get.showSnackbar(Ui.errorSnackBar(
+            message: "The Vendor has no profile to show", title: 'Error'.tr));
+      }
+    });
+  }
+
+  /// sent mail
+
+  void openImagePicker() async {
+    final picker = ImagePicker();
+    PickedFile? pick = await picker.getImage(source: ImageSource.gallery);
+    if (pick != null) {
+
+        attachments.add(pick.path);
+
+    }
+  }
+
+  void removeAttachment(int index) {
+
+      attachments.removeAt(index);
+
+  }
+  sendEmailController(){
+    AuthRepository().sendEmail(recipientController.value.text, subjectController.value.text, bodyController.value.text).then((value) {
+      if(value['error'] == false){
+        dataClearController();
+        Get.showSnackbar(Ui.successSnackBar(
+            message:value["results"]['message'], title: 'Success'.tr));
+      }else{
+        Get.showSnackbar(Ui.errorSnackBar(
+            message: "Something Wrong",
+            title: 'Error'.tr));
+      }
+    });
+  }
+  dataClearController(){
+     recipientController.value.clear() ;
+
+     subjectController.value.clear() ;
+
+     bodyController.value.clear() ;
+  }
+  Future<void> attachFileFromAppDocumentsDirectoy(BuildContext c) async {
+    try {
+      final appDocumentDir = await getApplicationDocumentsDirectory();
+      final filePath = appDocumentDir.path + '/file.txt';
+      final file = File(filePath);
+      await file.writeAsString('Text file in app directory');
+
+
+        attachments.add(filePath);
+
+    } catch (e) {
+      ScaffoldMessenger.of(c).showSnackBar(
+        SnackBar(
+          content: Text('Failed to create file in applicion directory'),
+        ),
+      );
+    }
+  }
+
+// end mail
+}
+
+
+extension MyControllerExtensions on HomeViewController {
+  // Debounced update method using GetX's debounce
+  updateSearchTextDebounced(String text) {
+    debounce(searchController, (value) {
+      // Update the searchText only when the user has stopped typing for a while
+      searchListController(text);
+    },
+        time: Duration(
+            milliseconds: 500)); // Adjust the debounce duration as needed
   }
 }

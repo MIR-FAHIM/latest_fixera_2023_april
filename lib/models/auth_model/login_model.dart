@@ -46,7 +46,7 @@ class UserInfo {
   String lastName;
   String hourlyRate;
   String tagline;
-  int locationId;
+  var locationId;
   String country;
   String address;
   String longitude;

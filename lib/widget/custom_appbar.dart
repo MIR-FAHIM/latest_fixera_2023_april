@@ -4,6 +4,8 @@ import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../routes/app_pages.dart';
+
 AppBar navAppBar() {
   HomeViewController controller = HomeViewController();
   return AppBar(
@@ -30,10 +32,14 @@ AppBar navAppBar() {
             //color: Colors.white,
 
             child: TextFormField(
+              onTap: (){
+                Get.toNamed(Routes.SEARCHVIEW);
 
+              },
 
+readOnly: true,
               maxLines: 1,
-              controller: controller.searchController,
+              controller: controller.searchController.value,
               decoration:  InputDecoration(
                 fillColor: Colors.white,
                 focusColor: Colors.white,

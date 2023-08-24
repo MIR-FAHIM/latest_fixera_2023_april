@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
+import 'package:latest_fixera_2023/widget/block_button.dart';
 
 class Ui {
   static GetSnackBar successSnackBar({String title = 'Success', required String message}) {
@@ -379,80 +380,112 @@ class Ui {
   //   );
   // }
   //
-  // static showAwesomeDialog(String title, String description, Color? color, VoidCallback? onTap,
-  //     {bool showClose = false, bool isBarrierDismiss = true, String type = 'info', String okay = 'Proceed'}) {
-  //   return AwesomeDialog(
-  //     context: Get.context!,
-  //     dialogType: type == 'info' ? DialogType.INFO_REVERSED : DialogType.NO_HEADER,
-  //     borderSide: BorderSide(
-  //       color: Get.theme.primaryColor,
-  //       width: 1,
-  //     ),
-  //     btnOkColor: color ?? Colors.yellow.shade500,
-  //     width: Get.size.width,
-  //     buttonsBorderRadius: const BorderRadius.all(
-  //       Radius.circular(25),
-  //     ),
-  //     dismissOnTouchOutside: isBarrierDismiss,
-  //     dismissOnBackKeyPress: false,
-  //     headerAnimationLoop: false,
-  //     animType: AnimType.BOTTOMSLIDE,
-  //
-  //     title: title,
-  //     titleTextStyle: const TextStyle(
-  //       fontSize: 18,
-  //       color: Colors.black,
-  //       fontWeight: FontWeight.normal,
-  //     ),
-  //     desc: description,
-  //     descTextStyle: const TextStyle(
-  //       fontSize: 15,
-  //       color: Colors.black,
-  //       fontWeight: FontWeight.normal,
-  //     ),
-  //     showCloseIcon: false,
-  //
-  //     btnCancel: Column(
-  //       children: [
-  //         BlockButtonWidget(
-  //           color: Get.theme.primaryColor,
-  //           onPressed: onTap,
-  //           text: Text(
-  //             okay,
-  //             style: const TextStyle(
-  //               color: Colors.white,
-  //             ),
-  //           ),
-  //         ),
-  //         SizedBox(
-  //           height: size.width * .03,
-  //         ),
-  //         showClose
-  //             ? BlockButtonWidget(
-  //           color: Colors.red,
-  //           hasBorder: true,
-  //           onPressed: () {
-  //             Get.back();
-  //           },
-  //           text: const Text(
-  //             'No, Close',
-  //             style: TextStyle(
-  //               color: Colors.white,
-  //             ),
-  //           ),
-  //         )
-  //             : Wrap(),
-  //         SizedBox(
-  //           height: size.width * .03,
-  //         ),
-  //       ],
-  //     ),
-  //
-  //     // btnCancelOnPress: () {
-  //     //   Get.back();
-  //     // },
-  //   ).show();
-  // }
+  static showAwesomeDialog(String title, String description, Color? color, VoidCallback? onTapOne, VoidCallback? onTapTwo,
+      {bool showClose = false, bool isBarrierDismiss = true, String type = 'info', String okay = 'Proceed'}) {
+    return AwesomeDialog(
+      context: Get.context!,
+      dialogType: type == 'info' ? DialogType.INFO_REVERSED : DialogType.NO_HEADER,
+      borderSide: BorderSide(
+        color: AppColors.primaryColor,
+        width: 1,
+      ),
+      btnOkColor: color ?? Colors.yellow.shade500,
+      width: Get.size.width,
+      buttonsBorderRadius: const BorderRadius.all(
+        Radius.circular(25),
+      ),
+      dismissOnTouchOutside: isBarrierDismiss,
+      dismissOnBackKeyPress: false,
+      headerAnimationLoop: false,
+      animType: AnimType.BOTTOMSLIDE,
+
+      title: title,
+      titleTextStyle: const TextStyle(
+        fontSize: 18,
+        color: Colors.black,
+        fontWeight: FontWeight.normal,
+      ),
+      desc: description,
+      descTextStyle: const TextStyle(
+        fontSize: 15,
+        color: Colors.black,
+        fontWeight: FontWeight.normal,
+      ),
+      showCloseIcon: false,
+
+      btnCancel: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BlockButtonWidget(
+                width: Get.size.width * .2,
+                color: AppColors.textColorRed,
+                onPressed: (){
+                  Get.back();
+                },
+                text: Text(
+                  "Cancel",
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              BlockButtonWidget(
+                width: Get.size.width * .2,
+
+                color: AppColors.primaryColor,
+                onPressed: onTapOne,
+                text: Text(
+                  "Public",
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              BlockButtonWidget(
+                width: Get.size.width * .2,
+
+                color: AppColors.primaryColor,
+                onPressed: onTapTwo,
+                text: Text(
+                  "Private",
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: Get.size.width * .03,
+          ),
+          showClose
+              ? BlockButtonWidget(
+            color: Colors.red,
+            //hasBorder: true,
+            onPressed: () {
+              Get.back();
+            },
+            text: const Text(
+              'No, Close',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          )
+              : Wrap(),
+          SizedBox(
+            height: Get.size.width * .03,
+          ),
+        ],
+      ),
+
+      // btnCancelOnPress: () {
+      //   Get.back();
+      // },
+    ).show();
+  }
   //
   // static noDataFound({String title = 'No data found', String url = 'assets/noData.json'}) {
   //   return Column(

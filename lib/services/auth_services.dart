@@ -12,6 +12,7 @@ class AuthService extends GetxService {
   final used = false.obs;
   final deviceToken = ''.obs;
 
+
   final language_key = 'en_US'.obs;
 
   AuthService() {
@@ -66,6 +67,8 @@ class AuthService extends GetxService {
   getLanguage() async {
     language_key.value = GetStorage().read<String>('language') ?? 'en_US';
   }
+
+
 
 // Future<void> getDeviceToken() async {
 //   deviceToken.value = await FirebaseMessaging.instance.getToken() ?? '';
