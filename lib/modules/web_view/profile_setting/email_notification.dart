@@ -13,7 +13,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:new_version_plus/new_version_plus.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
+import 'package:latest_fixera_2023/modules/web_view/proposal/estimation_web.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
@@ -43,7 +44,7 @@ class _proposalWebViewClassState extends State<ProposalWebView> {
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * .047,),
-            loader == true ? Center(child: CircularProgressIndicator(),) :
+          //  loader == true ? Center(child: CircularProgressIndicator(),) :
             Container(
                 height: MediaQuery.of(context).size.height * 1.5,
                 child: WebViewWidget(controller: WebViewController()
@@ -56,18 +57,25 @@ class _proposalWebViewClassState extends State<ProposalWebView> {
                       },
                       onPageStarted: (String url) async {
 
+                        print("my proposal url is $url");
+
 
                       },
                       onPageFinished: (String url) {
 
-                        setState(() {
-                          loader = false;
-                        });
+
 
                       },
                       onWebResourceError: (WebResourceError error) {},
                       onNavigationRequest: (NavigationRequest request) {
-
+                        if (request.url.contains('estimation') == true) {
+                          Get.to(
+                            EstimationWeb(
+                              url: request.url,
+                            ),
+                          );
+                          return NavigationDecision.prevent;
+                        }
                         return NavigationDecision.navigate;
                       },
                     ),

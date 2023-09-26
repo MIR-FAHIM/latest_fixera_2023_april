@@ -1,34 +1,28 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'dart:isolate';
-import 'dart:ui';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
-//import 'package:image_downloader/image_downloader.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:new_version_plus/new_version_plus.dart';
-
-import 'package:path_provider/path_provider.dart';
 import 'package:get/get.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 
 
 
 
-class ProjectCertificationWebView extends StatefulWidget {
+
+
+
+
+class EstimationWeb extends StatefulWidget {
+  String? url;
+  EstimationWeb({this.url});
   @override
-  _InAppWebViewExampleScreenState createState() =>
-      new _InAppWebViewExampleScreenState();
+  _dashboardWebViewClassState createState() => _dashboardWebViewClassState();
 }
 
-class _InAppWebViewExampleScreenState extends State<ProjectCertificationWebView> {
+class _dashboardWebViewClassState extends State<EstimationWeb> {
   final GlobalKey webViewKey = GlobalKey();
 
   InAppWebViewController? webViewController;
@@ -71,9 +65,15 @@ class _InAppWebViewExampleScreenState extends State<ProjectCertificationWebView>
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primaryColor,
-            title: Text("Project Certification"),
+            title: Text("Proposal"),
             centerTitle: true,
+            leading: InkWell(
+                onTap: (){
+                  Get.back();
+                },
+                child: Icon(Icons.arrow_back)),
           ),
+
           body: Stack(
             children: [
               InAppWebView(
@@ -86,9 +86,12 @@ class _InAppWebViewExampleScreenState extends State<ProjectCertificationWebView>
                 ),
                 //
                 initialUrlRequest: URLRequest(
-                    url: Uri.parse(ApiUrl.project_certification + Get.find<AuthService>().apiToken)
+                    url: Uri.parse("${widget.url}?token=${Get.find<AuthService>().apiToken}")
                 ),
                 onWebViewCreated: (InAppWebViewController controller){
+                  print("working on bid now");
+                  print(inAppWebViewController.getUrl());
+
                   inAppWebViewController = controller;
                 },
                 onProgressChanged: (InAppWebViewController controller , int progress){

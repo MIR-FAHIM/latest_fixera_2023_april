@@ -10,6 +10,8 @@ import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:latest_fixera_2023/widget/custom_appbar.dart';
 
+import '../../../../services/auth_services.dart';
+
 
 class MySavedViewScreen extends GetView<HomeViewController> {
   @override
@@ -169,7 +171,9 @@ class MySavedViewScreen extends GetView<HomeViewController> {
 
                                                   SizedBox(height: 20,),
 
-                                                  InkWell(
+                                                  Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+                                                      "contractor"
+                                                      ? InkWell(
                                                     onTap: () {
                                                       if (data.paymentStatus ==
                                                           1) {
@@ -178,7 +182,7 @@ class MySavedViewScreen extends GetView<HomeViewController> {
                                                         controller
                                                             .callWebController();
                                                         Get.to(
-                                                            JobDetailsWebView());
+                                                            JobDetailsWebView(controller.jobURL.value));
                                                       } else {
 
                                                         controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
@@ -217,7 +221,7 @@ class MySavedViewScreen extends GetView<HomeViewController> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
+                                                  ) : Container(),
 
                                                 ],
                                               ),

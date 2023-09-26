@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
@@ -17,12 +18,12 @@ import 'package:new_version_plus/new_version_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:get/get.dart';
 
-class MySavedItemWebView extends StatefulWidget {
+class TransferWebView extends StatefulWidget {
   @override
   _mySaveItemWebViewClassState createState() => _mySaveItemWebViewClassState();
 }
 
-class _mySaveItemWebViewClassState extends State<MySavedItemWebView> {
+class _mySaveItemWebViewClassState extends State<TransferWebView> {
 
   var controller = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -48,7 +49,7 @@ class _mySaveItemWebViewClassState extends State<MySavedItemWebView> {
         },
       ),
     )
-    ..loadRequest(Uri.parse(ApiUrl.favouriteUrl+Get.find<AuthService>().apiToken));
+    ..loadRequest(Uri.parse(ApiUrl.transferHistoryUrl+Get.find<AuthService>().apiToken));
   void initState() {
     super.initState();
 
@@ -70,7 +71,7 @@ class _mySaveItemWebViewClassState extends State<MySavedItemWebView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primaryColor,
-          title: Text("My Saved Item"),
+          title: Text("Transfer History"),
           centerTitle: true,
 
         ),

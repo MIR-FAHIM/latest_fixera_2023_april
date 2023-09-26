@@ -61,7 +61,13 @@ class _InAppWebViewExampleScreenState extends State<PersonalDetailsWebView> {
             backgroundColor: AppColors.primaryColor,
             title: Text("Personal Setting"),
             centerTitle: true,
+            leading: InkWell(
+              onTap: (){
+               Get.back();
+              },
+                child: Icon(Icons.arrow_back)),
           ),
+
           body: Stack(
             children: [
               InAppWebView(

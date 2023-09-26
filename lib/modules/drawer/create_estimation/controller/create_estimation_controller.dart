@@ -20,6 +20,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/project_tab.dart';
 import 'package:latest_fixera_2023/repositories/saved_rep.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -85,6 +86,8 @@ class CreateEstimationController extends GetxController {
   final typeOfRoofSelect = "".obs;
   final languageSelect = "".obs;
   final propertyTypeSelect = "".obs;
+  final locationSelect = "".obs;
+  final locationId = "".obs;
 
 
 
@@ -98,6 +101,7 @@ class CreateEstimationController extends GetxController {
   final customPriceProject = <MapEntry<String, String>>[].obs;
   final expirationList = <MapEntry<String, int>>[].obs;
   final insCompanyList = <MapEntry<String, String>>[].obs;
+  final locationList = <MapEntry<String, String>>[].obs;
   final ageRoofList = [].obs;
 
   final numOfStories = [].obs;
@@ -153,7 +157,7 @@ class CreateEstimationController extends GetxController {
 
   @override
   Future<void> onInit() async {
-
+    postJobProjectDataListController();
     projectContactName.value.text = Get.find<AuthService>().currentUser.value.userInfo!.firstName!;
     projectPhoneNo.value.text = Get.find<AuthService>().currentUser.value.userInfo!.phone!;
 
@@ -166,7 +170,7 @@ class CreateEstimationController extends GetxController {
     material
         .add(TextFieldDataEstimation());
     super.onInit();
-     postJobProjectDataListController();
+
   }
 
   @override
@@ -274,6 +278,7 @@ estimation_final_amount.value.text =  a.toString();
   clearTextCOntroller(){
      receiver_email.value.clear() ;
      project_title.value.clear();
+     projectTitlePostAJob.value.clear();
      company_name.value.clear();
      company_address.value.clear();
      company_phone.value.clear();
@@ -297,6 +302,18 @@ estimation_final_amount.value.text =  a.toString();
     estimationproductqtyList.clear();
     estimationProductPriceList.clear();
     estimationproducttotalList.clear();
+     projectTitlePostAJob.value.clear();
+    // customPriceProjectSelect.value = "";
+     customPrice.value.clear();
+    // projectDurationProjectSelect.value = "";
+    // catSelect.value = "";
+     projectCost.value.clear();
+     yourAddress.value.clear();
+     bidingStart.value.clear();
+     postalCode.value.clear();
+     bidingEnd.value.clear();
+     searchController.value.clear();
+     //endDateInput.value.clear();
      imageData.value = "";
      startDateInput.clear();
       endDateInput.clear();
@@ -426,25 +443,25 @@ estimation_final_amount.value.text =  a.toString();
        lead_contact_phone: "lead_contact_phone" ,
        lead_contact_address: "lead_contact_address",
        custom_price_type: "ss",
-       title: project_title.value.text,
-       custom_price_value: "454",
-       job_duration: "Fd",
+       title: projectTitlePostAJob.value.text,
+       custom_price_value: customPrice.value,
+       job_duration: projectDurationProjectSelect.value,
        freelancer_type: "dss",
        project_start_date: DateTime.now().toString(),
        project_end_date:DateTime.now().toString(),
        lead_expiration: "46",
        measurement_value: "46",
        measurement_type: "asd",
-       project_cost: "314",
-       public_bid_price: "312",
-       private_bid_price: "314",
-       locations: "2",
-       postal_code: "455",
-       address: "645",
+       project_cost: projectCost.value.text,
+       public_bid_price: bidingStart.value.text,
+       private_bid_price: bidingEnd.value.text,
+       locations: locationId.value,
+       postal_code: postalCode.value.text,
+       address: yourAddress.value.text,
        is_featured: "true",
        show_attachments: "false",
        description: "rw",
-       attachments: imageList[0],
+       attachments: imageList.isEmpty ? null : imageList[0],
        categories:["1","2"],
        languages:["1","2"],
 
@@ -456,8 +473,10 @@ estimation_final_amount.value.text =  a.toString();
         .then((value) {
       if (value["error"] == false) {
         Get.showSnackbar(Ui.successSnackBar(
-            message:"Project Created Successfully", title: 'Success'.tr));
+            message:value["results"], title: 'Success'.tr));
+
         clearTextCOntroller();
+        Get.to(ProjectTabBar(0));
         visible.value = 0;
       } else {
         visible.value = 0;
@@ -518,12 +537,14 @@ estimation_final_amount.value.text =  a.toString();
     });
   }
   postJobProjectDataListController(){
+    print("hlw sukkur1");
     catDataProject.value.clear();
     typeOfRoofList.value.clear();
     propertyTypeList.value.clear();
     catDataProject.value.clear();
     catDataProject.value.clear();
            SavedRepRepository().postJobProjectList().then((value) {
+             print("hlw sukkur2");
              catDataProject.value = value.results.categories.entries.toList();
              print("my all categories are ${ catDataProject.value[0].value.toString()}");
              catSelect.value = catDataProject.value[0].key.toString();
@@ -570,6 +591,10 @@ estimation_final_amount.value.text =  a.toString();
              propertyTypeList.value = value.results.propertyType.entries.toList();
              print("my all propertyTypeList are ${ propertyTypeList.value[0].value.toString()}");
              propertyTypeSelect.value = propertyTypeList.value[0].key.toString();
+             //
+             locationList.value = value.results.locations.entries.toList();
+             print("my all location  are ${ locationList.value[0].value.toString()}");
+             locationSelect.value = locationList.value[0].key.toString();
 
 
            });

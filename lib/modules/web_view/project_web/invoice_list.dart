@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/proposal_estimation_web.dart';
 import 'package:latest_fixera_2023/modules/web_view/project_web/proposal_wedash.dart';
-import 'package:latest_fixera_2023/modules/web_view/project_web/invoice_list.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
@@ -16,12 +16,15 @@ import 'package:get/get.dart';
 import '../../../utils/AppColors/app_colors.dart';
 
 
-class ProjectManageWebView extends StatefulWidget {
+class InvoiceWebList extends StatefulWidget {
+  String? url;
+  String? appBar;
+  InvoiceWebList(this.url, this.appBar);
   @override
   _projectManageWebViewClassState createState() => _projectManageWebViewClassState();
 }
 
-class _projectManageWebViewClassState extends State<ProjectManageWebView> {
+class _projectManageWebViewClassState extends State<InvoiceWebList> {
   double _progress = 0;
   late InAppWebViewController  inAppWebViewController;
 
@@ -44,6 +47,9 @@ class _projectManageWebViewClassState extends State<ProjectManageWebView> {
     return Scaffold(
 
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryColor,
+        title: Text("Invoice"),),
 
       body:
       Container(
@@ -68,21 +74,14 @@ class _projectManageWebViewClassState extends State<ProjectManageWebView> {
                 },
                 onWebResourceError: (WebResourceError error) {},
                 onNavigationRequest: (NavigationRequest request) {
-                  if (request.url.contains('proposals') == true) {
-                    Get.to(
-                      ProposalWebView(
-                        url: request.url,
 
-                      ),
-                    );
-                    return NavigationDecision.prevent;
-                  }
-                  if (request.url.contains('invoice') ==
-                      true) {
+                  if (request.url.contains('details') == true) {
                     Get.to(
-                      InvoiceWebList(
-                      request.url,
+                      ProposalEstimationWebView(
+                       request.url,
                         "Invoice"
+
+
                       ),
                     );
                     return NavigationDecision.prevent;
@@ -90,18 +89,18 @@ class _projectManageWebViewClassState extends State<ProjectManageWebView> {
                     return NavigationDecision.navigate;
                   }
 
+
+
                 },
               ),
             )
-            ..loadRequest(Uri.parse(Get.find<AuthService>().currentUser.value.userInfo!.roleName == "contractor"
-                ?ApiUrl.contractorManageJobsUrl+Get.find<AuthService>().apiToken
-                : ApiUrl.leadManageJobsUrl+Get.find<AuthService>().apiToken)))
+            ..loadRequest(Uri.parse("${widget.url!}?token=${Get.find<AuthService>().apiToken}")))
       ),
-          // _progress < 1 ? Container(
-          //   child: LinearProgressIndicator(
-          //     value: _progress,
-          //   ),
-          // ):SizedBox()
+      // _progress < 1 ? Container(
+      //   child: LinearProgressIndicator(
+      //     value: _progress,
+      //   ),
+      // ):SizedBox()
 
     );
   }

@@ -101,7 +101,7 @@ class Options {
     duration: json["duration"],
     jobs: json["jobs"],
     featuredJobs: json["featured_jobs"],
-    noOfConnects: json["no_of_connects"],
+    noOfConnects: json["no_of_connects"].toString(),
   );
 
   Map<String, dynamic> toJson() => {

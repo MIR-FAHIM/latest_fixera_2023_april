@@ -18,8 +18,10 @@ import 'package:latest_fixera_2023/modules/web_view/profile_setting/email_sent.d
 import 'package:latest_fixera_2023/modules/web_view/profile_setting/payment_setting.dart';
 import 'package:latest_fixera_2023/modules/web_view/profile_setting/personal_details_skills.dart';
 import 'package:latest_fixera_2023/modules/web_view/profile_setting/project_certification.dart';
+import 'package:latest_fixera_2023/modules/web_view/profile_setting/vendor_profile_web.dart';
 import 'package:latest_fixera_2023/modules/web_view/project_web/project_ongoing_web_view.dart';
 import 'package:latest_fixera_2023/modules/web_view/proposal/proposal_web.dart';
+import 'package:latest_fixera_2023/modules/web_view/transfer_history_web.dart';
 import 'package:latest_fixera_2023/modules/web_view/wallet/wallet_tabbar_view.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
@@ -114,21 +116,18 @@ class NavDrawer extends StatelessWidget {
                                     ),
                                   ),
                             Container(
-                              width: 100,
+                              width: Get.width * .4,
                               child: Column(
                                 children: [
                                   SizedBox(
                                     height: Get.height * .06,
                                   ),
                                   Text(
-                                    "${Get.find<AuthService>().currentUser.value.userInfo!.firstName}",
+                                    "${Get.find<AuthService>().currentUser.value.userInfo!.firstName}" + " ${Get.find<AuthService>().currentUser.value.userInfo!.lastName}",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 16),
                                   ),
-                                  Text(
-                                    "${Get.find<AuthService>().currentUser.value.userInfo!.lastName}",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
+
                                   InkWell(
                                     onTap: (){
                                       if(Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
@@ -179,7 +178,7 @@ class NavDrawer extends StatelessWidget {
                           navIcon: Icons.post_add,
                           navTitle: 'Projects',
                           onNavPress: () {
-                            Get.to(ProjectTabBar());
+                            Get.to(ProjectTabBar(0));
                           },
                         ),
                         NavDrawerTile(
@@ -406,7 +405,7 @@ class NavDrawer extends StatelessWidget {
                                       Get.to(EmailNotificationWebView());
                                     },
                                     child: Text(
-                                      "Email Notification ",
+                                      "Email Notification",
                                       softWrap: true,
                                     ),
                                   ),
@@ -474,7 +473,7 @@ class NavDrawer extends StatelessWidget {
                           navIcon: Icons.loyalty,
                           navTitle: 'Post a Lead',
                           onNavPress: () {
-                            Get.toNamed(Routes.POSTLEAD);
+                            Get.toNamed(Routes.POSTPROJECT);
                           },
                         ),
                         NavDrawerTile(
@@ -484,12 +483,19 @@ class NavDrawer extends StatelessWidget {
                             Get.to(LeadTabBar());
                           },
                         ),
-
+                        NavDrawerTile(
+                          navIcon: Icons.grain,
+                          navTitle: 'Packages',
+                          onNavPress: () {
+                            Get.toNamed(Routes.PACKAGELIST);
+                            // Get.to(PackagesWebView());
+                          },
+                        ),
                         NavDrawerTile(
                           navIcon: Icons.payments_outlined,
                           navTitle: 'Transfer History',
                           onNavPress: () {
-                            Get.to(InvoiceWebView());
+                            Get.to(TransferWebView());
                           },
                         ),
 
@@ -623,13 +629,15 @@ class NavDrawer extends StatelessWidget {
                                             children: [
                                               InkWell(
                                                 onTap: () {
+                                                  Get.to(VendorProfileWeb());
+
                                                   // Route route = MaterialPageRoute(
                                                   //     builder: (c) =>
                                                   //         ContractorPersonalDetailSCreen());
                                                   // Navigator.pushReplacement(context, route);
                                                 },
                                                 child: Text(
-                                                  "Account Setting",
+                                                  "Manage Profile",
                                                   softWrap: true,
                                                 ),
                                               ),
@@ -675,7 +683,8 @@ class NavDrawer extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      // Get.toNamed(AppRoutes.EMAIL_ACCOUNT);
+                                      Get.to(EmailNotificationWebView());
+
                                     },
                                     child: Text(
                                       "Email Notification ",
@@ -687,6 +696,8 @@ class NavDrawer extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
+                                      Get.to(DeactivateWebView());
+
                                       // Get.toNamed(
                                       //  AppRoutes.DEACTIVATE_ACCOUNT);
                                     },
@@ -724,6 +735,7 @@ class NavDrawer extends StatelessWidget {
                           navIcon: Icons.logout,
                           navTitle: 'Logout',
                           onNavPress: () async {
+                            Get.find<AuthService>().removeCurrentUser();
                             Get.toNamed(Routes.SPLASHSCREEN);
                           },
                         ),

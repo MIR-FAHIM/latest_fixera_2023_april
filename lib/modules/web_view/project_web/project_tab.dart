@@ -11,6 +11,10 @@ import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 
 class ProjectTabBar extends StatefulWidget {
 
+  int? page;
+  ProjectTabBar(@required this.page);
+
+
 
   @override
   State<ProjectTabBar> createState() => _ProjectTabBarState();
@@ -19,41 +23,43 @@ class ProjectTabBar extends StatefulWidget {
 class _ProjectTabBarState extends State<ProjectTabBar> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppColors.primaryColor,
-          title: const Text('Projects'),
-          bottom: const TabBar(
-            tabs: <Widget>[
-              Tab(
-                text: "Manage",
+    return Container(
+      height: 2000,
+      child: DefaultTabController(
+        initialIndex: widget.page!,
+        length: 3,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: AppColors.primaryColor,
+            title: const Text('Projects'),
+            bottom: const TabBar(
+              tabs: <Widget>[
+                Tab(
+                  text: "Manage",
+                ),
+                Tab(
+                  text: "Ongoing",
+                ),
+                Tab(
+                  text: "Completed",
+                ),
+              ],
+            ),
+          ),
+          body:  TabBarView(
+            physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              ProjectManageWebView(),
+              Center(
+                child: ProjectWebView(),
               ),
-              Tab(
-                text: "Ongoing",
-              ),
-              Tab(
-                text: "Completed",
+              Center(
+                child: ProjectCompletedWebView(),
               ),
             ],
           ),
-        ),
-        body:  TabBarView(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height* 6,
-                child: ProjectManageWebView()),
-            Center(
-              child: ProjectWebView(),
-            ),
-            Center(
-              child: ProjectCompletedWebView(),
-            ),
-          ],
         ),
       ),
     );

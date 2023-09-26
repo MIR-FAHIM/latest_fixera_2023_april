@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
 import 'package:latest_fixera_2023/modules/splash/controller/splash_screen_controller.dart';
 import 'package:latest_fixera_2023/modules/web_view/job_details/job_details_webview.dart';
+import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:latest_fixera_2023/utils/ui_support.dart';
 import 'package:latest_fixera_2023/widget/custom_appbar.dart';
@@ -183,6 +184,8 @@ class BrowseJobViewScreen extends GetView<HomeViewController> {
                                             SizedBox(
                                               height: 20,
                                             ),
+                                            Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+                                                "contractor" ?
                                             InkWell(
                                               onTap: () {
                                                 if (data.paymentStatus ==
@@ -192,7 +195,7 @@ class BrowseJobViewScreen extends GetView<HomeViewController> {
                                                   controller
                                                       .callWebController();
                                                   Get.to(
-                                                      JobDetailsWebView());
+                                                      JobDetailsWebView(controller.jobURL.value));
                                                 } else {
 
                                                   controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
@@ -231,7 +234,7 @@ class BrowseJobViewScreen extends GetView<HomeViewController> {
                                                   ),
                                                 ),
                                               ),
-                                            ),
+                                            ) : Container(),
                                           ],
                                         ),
                                       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
-import 'package:latest_fixera_2023/modules/web_view/dash_board/view/proposal_wedash.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/proposal_wedash.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
@@ -62,6 +62,7 @@ class _dashboardWebViewClassState extends State<DashboardWebView> {
                                   Get.to(
                                     ProposalWebView(
                                       url: request.url,
+
                                     ),
                                   );
                                   return NavigationDecision.prevent;

@@ -20,7 +20,7 @@ class _ProjectTabBarState extends State<LeadTabBar> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 3,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -29,6 +29,7 @@ class _ProjectTabBarState extends State<LeadTabBar> {
           backgroundColor: AppColors.primaryColor,
           title: const Text('Leads'),
           bottom: const TabBar(
+            physics: NeverScrollableScrollPhysics(),
             tabs: <Widget>[
               Tab(
                 text: "Manage",
@@ -43,6 +44,7 @@ class _ProjectTabBarState extends State<LeadTabBar> {
           ),
         ),
         body:  TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             Center(
               child: ProjectManageWebView(),

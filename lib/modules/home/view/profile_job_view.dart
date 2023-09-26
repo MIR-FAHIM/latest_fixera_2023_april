@@ -10,7 +10,7 @@ import 'package:latest_fixera_2023/widget/custom_appbar.dart';
 
 import '../../../services/auth_services.dart';
 
-class SeeVendorProfile extends GetView<HomeViewController> {
+class SeeVendorProfileJObView extends GetView<HomeViewController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -18,12 +18,11 @@ class SeeVendorProfile extends GetView<HomeViewController> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        title: Text("Full Profile"),
+        title: Text("Job List"),
         backgroundColor: AppColors.primaryColor,
         centerTitle: true,
       ),
-      body: Obx(() {
-        return SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Padding(
@@ -31,65 +30,25 @@ class SeeVendorProfile extends GetView<HomeViewController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * .15,
-                    width: MediaQuery.of(context).size.width * 9,
-                    color: Colors.grey.shade100,
-                    child: Center(
-                      child: Text("CCS Asia"),
-                      // child: Image.asset(
-                      //   "images/fixera_logo.png",
-                      //   height: 120,
-                      //   width: 120,
-                      // ),
-                    ),
-                  ),
-                  ListTile(
-                    title: controller.vendorName.value.isEmpty? Text("No Data") : Text(controller.vendorName.value),
-                    subtitle: Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
-                        "contractor" ? Text("Contractor"):Text("Vendor") ,
-                    leading: Image.asset("images/icons/user.png", height: 100,width: 100,),
-                    // trailing:  CircleAvatar(
-                    //   radius: 14,
-                    //   backgroundColor: Colors.grey,
-                    //   child: Icon(
-                    //     Icons.favorite_outlined,
-                    //     color: Colors.white,
-                    //     size: 15,
-                    //   ),
-                    // ),
-                  ),
-                  SizedBox(height: 10,),
-                  Text("About", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                  SizedBox(height: 10,),
-                  Container(
-                    height: 100,
-                    color: Colors.lightGreen.shade100,
-                    width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: controller.vendorAbout.value.isEmpty ? Text("No Data"): Text(controller.vendorAbout.value,
-                      maxLines: 5,),
-                    ),
-                  ),
-                  SizedBox(height: 10,),
+
                   Text("Jobs", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Obx(
-                       () {
-                        return Container(
-                          height: MediaQuery.of(context).size.height * .7,
-                          width: MediaQuery.of(context).size.width,
-                          child: controller.vendorJobList.length == 0 ? Center(child: Text("No Data")):ListView.builder(
-                              itemCount: controller.vendorJobList.length,
-                              itemBuilder: (BuildContext context, index) {
-                                var data = controller.vendorJobList[index];
+                            () {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * .8,
+                            width: MediaQuery.of(context).size.width,
+                            child: controller.vendorJobList.isEmpty ? Center(child: Text("No Data")):ListView.builder(
+                                itemCount: controller.vendorJobList.length,
+                                itemBuilder: (BuildContext context, index) {
+                                  var data = controller.vendorJobList[index];
 
-                                   return Card(
-                                      elevation: 5,
-                                      child: Obx(
-                                        () {
+                                  return Card(
+                                    elevation: 5,
+                                    child: Obx(
+                                            () {
                                           return Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: badges.Badge(
@@ -115,8 +74,8 @@ class SeeVendorProfile extends GetView<HomeViewController> {
                                               child: Center(
                                                 child: Container(
                                                   height:
-                                                      MediaQuery.of(context).size.height *
-                                                          .24,
+                                                  MediaQuery.of(context).size.height *
+                                                      .24,
                                                   width: MediaQuery.of(context).size.width *
                                                       .4,
                                                   child: Column(
@@ -255,7 +214,7 @@ class SeeVendorProfile extends GetView<HomeViewController> {
                                                           height: 30,
                                                           width: 100,
                                                           decoration: BoxDecoration(
-                                                            color:  data.paymentStatus ==
+                                                              color:  data.paymentStatus ==
                                                                   1
                                                                   ? Colors.purple
                                                                   .withOpacity(.6)
@@ -263,8 +222,8 @@ class SeeVendorProfile extends GetView<HomeViewController> {
                                                                   .textColorGreen,
 
                                                               borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      10)),
+                                                              BorderRadius.circular(
+                                                                  10)),
                                                           alignment: Alignment.center,
                                                           child: Text(
                                                             "View Job",
@@ -283,20 +242,20 @@ class SeeVendorProfile extends GetView<HomeViewController> {
                                             ),
                                           );
                                         }
-                                      ),
-                                    );
+                                    ),
+                                  );
 
-                              }),
-                        );
-                      }
+                                }),
+                          );
+                        }
                     ),
                   ),
                 ],
               ),
             ),
           ),
-        );
-      }),
+        ),
+
     );
   }
 }

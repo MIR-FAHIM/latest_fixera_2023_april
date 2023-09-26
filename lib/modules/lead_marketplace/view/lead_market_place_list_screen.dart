@@ -101,7 +101,7 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                                             ),
                                                           ),
                                                           SizedBox(width: 20,),
-                                                          Text(data.name!),
+                                                          Text(data!.name),
                                                         ],
                                                       ),
                                                       Row(
@@ -115,7 +115,7 @@ class LeadMarketViewScreen extends GetView<HomeViewController> {
                                                           InkWell(
                                                             onTap: (){
 
-                                                             controller.seeVendorProfileController( data.id);
+                                                             controller.seeVendorProfileController(data.id);
                                                             },
                                                               child: Text("Full Profile",style: TextStyle(fontSize: 14, color: Colors.blue),)),
 

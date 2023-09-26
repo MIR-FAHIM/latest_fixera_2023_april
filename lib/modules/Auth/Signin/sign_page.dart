@@ -117,14 +117,14 @@ class LoginView extends GetView<AuthController> {
                     },
                     child: AnimatedContainer(
                       duration: Duration(seconds: 2),
-                      height: controller.visible.value == 1 ? 50 : 60,
-                      width: controller.visible.value == 1 ? 50 : 140,
+                      height: controller.signInVisible.value == 1 ? 50 : 60,
+                      width: controller.signInVisible.value == 1 ? 50 : 140,
                       decoration: BoxDecoration(
                           color: AppColors.ccsYelow,
                           borderRadius:
-                          BorderRadius.circular(controller.visible.value == 1 ? 60 : 10)),
+                          BorderRadius.circular(controller.signInVisible.value == 1 ? 60 : 10)),
                       alignment: Alignment.center,
-                      child: controller.visible.value == 1
+                      child: controller.signInVisible.value == 1
                           ? Center(child: CircularProgressIndicator())
                           : Text(
                         "Sign In",

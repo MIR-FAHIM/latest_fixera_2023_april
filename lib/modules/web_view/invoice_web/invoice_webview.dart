@@ -17,11 +17,11 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:new_version_plus/new_version_plus.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:get/get.dart';
 
-import '../dash_board/view/proposal_wedash.dart';
+import '../project_web/proposal_wedash.dart';
 
 
 
@@ -57,7 +57,8 @@ class _manageAccountWebViewClassState extends State<InvoiceWebView> {
       ),
     )
     ..loadRequest(
-        Uri.parse(ApiUrl.contractorInvoiceUrl+Get.find<AuthService>().apiToken));
+        Uri.parse( Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+            "contractor"? ApiUrl.contractorInvoiceUrl+Get.find<AuthService>().apiToken : ApiUrl.vendorInvoiceUrl+Get.find<AuthService>().apiToken));
   void initState() {
     super.initState();
   }
@@ -84,7 +85,7 @@ class _manageAccountWebViewClassState extends State<InvoiceWebView> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .047,
               ),
-              loader == true ? Center(child: CircularProgressIndicator()):
+
               Container(
                   height: MediaQuery.of(context).size.height * 4,
                   child: WebViewWidget(
@@ -106,11 +107,7 @@ class _manageAccountWebViewClassState extends State<InvoiceWebView> {
 
                             onPageFinished: (String url) {
 
-                              setState(() {
-                                loader = false;
-                              });
 
-                              print("url is +=++++++++++++ $url");
 
 
                             },
@@ -144,7 +141,8 @@ class _manageAccountWebViewClassState extends State<InvoiceWebView> {
 
                         ..loadRequest(Uri.parse(
 
-                            ApiUrl.contractorInvoiceUrl+Get.find<AuthService>().apiToken
+                            Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+                                "contractor" ?     ApiUrl.contractorInvoiceUrl+Get.find<AuthService>().apiToken : ApiUrl.vendorInvoiceUrl+Get.find<AuthService>().apiToken
                         ),
                             headers: {"Authorization": "Bearer ${Get.find<AuthService>().apiToken}"})
                   )),

@@ -63,7 +63,7 @@ class HomeRepository {
     APIManager _manager = APIManager();
     final response = await _manager.postAPICallWithHeader(
 
-      "https://ccsforasia.com/api/v1/lead-details-payment-process?job_slug=$slug&job_id=$id&status=public",
+      "https://ccsforasia.com/api/v1/lead-details-payment-process?job_slug=$slug&job_id=$id&status=$status",
       {
         'job_slug': slug,
         'job_id': id.toString(),

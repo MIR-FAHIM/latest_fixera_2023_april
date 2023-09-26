@@ -363,6 +363,7 @@ class CreateWorkOrderFormScreen extends GetView<CreateWorkOrderController> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
+                            keyboardType: TextInputType.number,
                             maxLines: 1,
                             controller: controller.company_mobile.value,
                             decoration: new InputDecoration(
@@ -387,6 +388,7 @@ class CreateWorkOrderFormScreen extends GetView<CreateWorkOrderController> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
+                            keyboardType: TextInputType.number,
                             maxLines: 1,
                             controller:
                                 controller.work_order_total_amount.value,

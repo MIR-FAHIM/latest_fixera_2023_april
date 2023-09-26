@@ -182,12 +182,16 @@ class BuyCreditListView extends GetView<BuyCreditController> {
                                   ) ,
                                 ),
                               ),
-                              i == controller.itemsCredit.value.length -1?
+                              controller.creditModel.value.results!.total > controller.itemsCredit.value.length && i == controller.itemsCredit.value.length -1 ?
                               InkWell(
                                 onTap:(){
                                   controller.fetchNextPage();
                           },
-                                  child: Text("See More")) : Container()
+                                  child: Text("See More", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.green)))
+                                 : Container(),
+                              SizedBox(
+                                height: 10,
+                              )
                             ],
                           );
 

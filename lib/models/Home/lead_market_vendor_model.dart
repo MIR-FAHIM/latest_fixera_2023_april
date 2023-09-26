@@ -29,7 +29,7 @@ class GetLeadMarketVendorModel {
 }
 
 class Results {
-  Users users;
+  List<VendorDatum> users;
   List<Language> locations;
   List<Language> languages;
   Map<String, String> freelancerSkills;
@@ -54,7 +54,7 @@ class Results {
   });
 
   factory Results.fromJson(Map<String, dynamic> json) => Results(
-    users: Users.fromJson(json["users"]),
+    users:List<VendorDatum>.from(json["users"].map((x) => VendorDatum.fromJson(x))),
     locations: List<Language>.from(json["locations"].map((x) => Language.fromJson(x))),
     languages: List<Language>.from(json["languages"].map((x) => Language.fromJson(x))),
     freelancerSkills: Map.from(json["freelancer_skills"]).map((k, v) => MapEntry<String, String>(k, v)),
@@ -67,7 +67,7 @@ class Results {
   );
 
   Map<String, dynamic> toJson() => {
-    "users": users.toJson(),
+    "users":  List<dynamic>.from(users.map((x) => x.toJson())),
     "locations": List<dynamic>.from(locations.map((x) => x.toJson())),
     "languages": List<dynamic>.from(languages.map((x) => x.toJson())),
     "freelancer_skills": Map.from(freelancerSkills).map((k, v) => MapEntry<String, dynamic>(k, v)),
@@ -156,25 +156,7 @@ class ProjectLength {
   };
 }
 
-class Users {
-  List<VendorDatum> data;
-  Pagination pagination;
 
-  Users({
-    required this.data,
-    required this.pagination,
-  });
-
-  factory Users.fromJson(Map<String, dynamic> json) => Users(
-    data: List<VendorDatum>.from(json["data"].map((x) => VendorDatum.fromJson(x))),
-    pagination: Pagination.fromJson(json["pagination"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "pagination": pagination.toJson(),
-  };
-}
 
 class VendorDatum {
   int id;

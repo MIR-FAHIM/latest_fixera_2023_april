@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/create_invoice.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/invoice_list.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/work_order_web.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
@@ -22,7 +25,7 @@ class _projectWebViewClassState extends State<ProjectWebView> {
           // Update loading bar.
         },
         onPageStarted: (String url) async {
-
+      print("my url is $url");
 
 
         },
@@ -33,7 +36,49 @@ class _projectWebViewClassState extends State<ProjectWebView> {
         onWebResourceError: (WebResourceError error) {},
         onNavigationRequest: (NavigationRequest request) {
 
-          return NavigationDecision.navigate;
+          if (request.url.contains('create-invoice') == true) {
+            Get.to(
+              CreateInvoiceWeb(
+                url: request.url,
+
+
+              ),
+            );
+            return NavigationDecision.prevent;
+          }
+          //job/tranfer_payment/summary/56/11/15
+          if (request.url.contains('project/invoice/list/') == true) {
+            Get.to(
+              InvoiceWebList(
+                request.url,
+                "Invoice"
+
+              ),
+            );
+            return NavigationDecision.prevent;
+          }
+          if (request.url.contains('work-order-details') == true) {
+            Get.to(
+              WorkOrderDetailsWeb(
+                url: request.url,
+
+              ),
+            );
+            return NavigationDecision.prevent;
+          } else {
+            return NavigationDecision.navigate;
+          }
+          // if (request.url.contains('payment-process') ==
+          //     true) {
+          //   Get.to(
+          //     BidNowWeb(
+          //       url: request.url,
+          //     ),
+          //   );
+          //   return NavigationDecision.prevent;
+          // } else {
+
+        // }
         },
       ),
     )

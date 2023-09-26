@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 
-import 'package:latest_fixera_2023/repositories/auth_repositories/auth_repositories.dart';
+
+
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 
 class SendMailScreen extends GetView<HomeViewController> {

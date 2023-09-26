@@ -58,7 +58,8 @@ class SavedRepRepository {
     print("api token is ${Get.find<AuthService>().apiToken}");
     APIManager _manager = APIManager();
     final response = await _manager.getWithHeader(
-      ApiUrl.packageList,
+      Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+          "contractor" ? ApiUrl.packageListContractor: ApiUrl.packageListVendor,
       {"Authorization": "Bearer ${Get.find<AuthService>().apiToken}"},
     );
     return PackageListModel.fromJson(response);
@@ -291,21 +292,21 @@ class SavedRepRepository {
       "lead_contact_phone": "9089087887",
       "lead_contact_address": "Hourly",
       "custom_price_type": "121",
-      "title": "3 to 6 months",
+      "title": title,
       "custom_price_value": "4",
-      "job_duration": "ft",
+      "job_duration": job_duration,
       "freelancer_type": "2",
       "project_start_date": "22-09-23",
       "project_end_date": "2021-07-28",
       "lead_expiration": "48" ,
       "measurement_value":"121",
       "measurement_type": "2",
-      "project_cost": "8799",
-      "public_bid_price": "66",
+      "project_cost": project_cost.toString(),
+      "public_bid_price": private_bid_price.toString(),
       // "no_stories":6,
-      "private_bid_price": "7",
-      "locations": "2",
-      "postal_code": "4000",
+      "private_bid_price": public_bid_price.toString(),
+      "locations": locations,
+      "postal_code": postal_code,
       "address": "hjkhjk",
       "is_featured":"true",
       "show_attachments":"true",
@@ -313,10 +314,7 @@ class SavedRepRepository {
 
 
     };
-    // open a bytestream
-    var stream = new http.ByteStream(DelegatingStream.typed(attachments!.openRead()));
-    // get file length
-    var length = await attachments.length();
+    print("my location id is $locations");
 
     // string to uri
     var uri = Uri.parse("https://ccsforasia.com/api/v2/post-job");
@@ -324,9 +322,6 @@ class SavedRepRepository {
     // create multipart request
     var request = new http.MultipartRequest("POST", uri);
 
-    // multipart that takes file
-    var multipartFile = new http.MultipartFile('attachments[]', stream, length,
-        filename: basename(attachments.path));
 
     // add file to multipart
 
@@ -342,7 +337,20 @@ class SavedRepRepository {
 
     }
 
-    request.files.add(multipartFile);
+    if(attachments != null){
+      // open a bytestream
+      var stream = new http.ByteStream(DelegatingStream.typed(attachments!.openRead()));
+      // get file length
+      var length = await attachments.length();
+
+
+      // multipart that takes file
+      var multipartFile = new http.MultipartFile('attachments[]', stream, length,
+          filename: basename(attachments.path));
+      request.files.add(multipartFile);
+    }
+
+
     request.fields.addAll(data);
     request.headers.addAll(  {
       //'X-Requested-With': 'XMLHttpRequest',

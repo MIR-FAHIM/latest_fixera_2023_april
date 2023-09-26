@@ -1,3 +1,6 @@
+import 'package:latest_fixera_2023/services/auth_services.dart';
+import 'package:get/get.dart';
+
 class ApiUrl {
   String api_token = '';
   static String googleMapApiKey = '';
@@ -56,11 +59,13 @@ class ApiUrl {
   static String emailExistUrl = "$baseUrl/email/check";
   static String signUpPostUrl = "$baseUrl/register";
   static String favouriteUrl = "$baseUrl/user-favourite";
-  static String postJobDataList = "$baseUrl/post-job?role_id=2";
+  static String postJobDataList = "$baseUrl/post-job?role_id=3";
   static String favouritGetUrl = "$baseUrl/user-favourite-lists";
   static String creditList = "$mainUrl/api/v2/buy-credit";
   static String buyPackage = "$mainUrl/api/v2/package/contractor?";
-  static String packageList = "$mainUrl/api/v2/package/contractor";
+  static String packageListContractor = "$mainUrl/api/v2/package/contractor";
+  static String packageListVendor = "$mainUrl/api/v2/package/vendor";
+  static String  vendorProfileSettingUrl = "$mainUrl/api/v1/webview/vendor/profile";
 
 
 
@@ -88,7 +93,8 @@ class ApiUrl {
       "$baseUrl/webview/profile/settings/delete-account?token=";
   static String contrctorExEdu =
       "$baseUrl/webview/contractor/dashboard/experience-education?token=";
-
+   static String transferHistoryUrl =
+       "$baseUrl/webview/${Get.find<AuthService>().currentUser.value.userInfo!.roleName}/job/tranfer_payment/summary?token=";
 
   static String profileDetailsAndSkill =
       "$baseUrl/webview/contractor/profile?token=";

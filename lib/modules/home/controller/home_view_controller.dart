@@ -3,6 +3,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:latest_fixera_2023/modules/home/view/profile_job_view.dart';
+import 'package:latest_fixera_2023/modules/web_view/job_details/bid_now_web.dart';
+import 'package:latest_fixera_2023/modules/web_view/job_details/job_details_webview.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -31,7 +34,7 @@ class HomeViewController extends GetxController {
   final mySavedFreelancerListJobs = <FreelancerItems>[].obs;
   final mySavedEmployerListJobs = <EmployeerItems>[].obs;
   var searchTextController = TextEditingController().obs;
-  final contractorChecked =  false.obs;
+  final contractorChecked =  true.obs;
   final brwsJobChecked =  false.obs;
   final marketPlaceChecked =  false.obs;
   final categoryList = <Categories>[].obs;
@@ -100,6 +103,7 @@ class HomeViewController extends GetxController {
             // Update loading bar.
           },
           onPageStarted: (String url) async {
+            print("my url is $url");
             //https://shopbasebd.com/public/uploads/shop/products/1684647182_L_2.jpeg
 
             // NavigationDecision.navigate;
@@ -107,6 +111,15 @@ class HomeViewController extends GetxController {
           onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
+            print("my url is ${request.url}");
+            if (request.url.contains('proposal') == true) {
+              Get.to(
+                BidNowWeb(
+                  url: request.url,
+                ),
+              );
+              return NavigationDecision.prevent;
+            }
             return NavigationDecision.navigate;
           },
         ),
@@ -164,17 +177,21 @@ class HomeViewController extends GetxController {
   }
   callPublicController(String slug, int id, String status){
     HomeRepository().callPublicRep(slug, id, status).then((value) {
+      print("value is $value");
       if(value['error']== true){
         Get.showSnackbar(Ui.errorSnackBar(
             message: value['message'], title: 'Error'.tr));
       } else {
+       // Get.back();
+        Get.to(JobDetailsWebView(value["results"]["job_url"]));
+        browseJobListCOntroller();
         getHomeApiList();
       }
 
     });
 
   }
-  getHomeApiList() {
+   getHomeApiList() async {
     print("home api list working called -------");
     HomeRepository().homeApiList().then((value) {
       print(
@@ -184,6 +201,8 @@ class HomeViewController extends GetxController {
       latestJobList.value = value.results!.latestJobs!;
       print("category list length is ${categoryList.length}");
     });
+
+
   }
 
   browseJobListCOntroller() {
@@ -207,12 +226,16 @@ class HomeViewController extends GetxController {
         value["results"]["modal_header"], value["results"]["modal_body_message_one"] +value["results"]["modal_body_message_two"] + value["results"]["modal_body_message_three"],
         AppColors.primaryColor, () {
           callPublicController(slug, id, 'public').then((){
+            print("hlw payment $value");
+            browseJobListCOntroller();
             Get.back();
           });
 
     },
       () {
         callPublicController(slug, id, 'private').then((){
+          print("hlw payment $value");
+          browseJobListCOntroller();
           Get.back();
         });
     }
@@ -236,9 +259,12 @@ class HomeViewController extends GetxController {
   }
   makeFavCOntroller(
       id,
-    favId, type) {
+    favId, type, {userId}) {
     print("makeFavCOntroller working called -----${Get.find<AuthService>().currentUser.value.userInfo!.id} and  $favId------");
     HomeRepository().makeFavRep(Get.find<AuthService>().currentUser.value.userInfo!.id,favId, type).then((value) {
+      print("hlw sukkur");
+      seeVendorProfileController(Get.find<AuthService>().currentUser.value.userInfo!.id);
+      print("hlw sukkur1111");
       getHomeApiList();
       mySavedItemController();
       contractorListCOntroller();
@@ -266,8 +292,8 @@ class HomeViewController extends GetxController {
     print("contractor api list working called -------");
     HomeRepository().getLeadListMarket().then((value) {
       print(
-          "browse hlw bro +++++ ${value.results!.users!.data!.length.toString()}");
-      leadMarketVendorList.value = value.results.users!.data;
+          "browse hlw bro +++++ ${value.results!.users!.length.toString()}");
+      leadMarketVendorList.value = value.results!.users!;
 
 
       print("leadMarketVendorList list length is ${leadMarketVendorList.length}");
@@ -277,6 +303,7 @@ class HomeViewController extends GetxController {
   seeVendorProfileController(ids) {
     print("see vendor profile working called -------");
     HomeRepository().seeVendorProfileRep(ids).then((value) {
+      vendorJobList.value = value.results!.jobs!;
       print("vendor job hlw bro +++++ ${value.results!.id!.toString()}");
       vendorName.value = value.results.name!;
       vendorImage.value = value.results.avatar;
@@ -284,12 +311,35 @@ class HomeViewController extends GetxController {
       vendorAbout.value = value.results.about;
       vendorFav.value = value.results.isFavourite;
 
-      vendorJobList.value = value.results!.jobs!;
+
 
       print("vendor job list length is ${vendorJobList.length}");
 
       if (value.error == false) {
         Get.to(SeeVendorProfile());
+      } else {
+        Get.showSnackbar(Ui.errorSnackBar(
+            message: "The Vendor has no profile to show", title: 'Error'.tr));
+      }
+    });
+  }
+  seeVendorProfileControllerJobList(ids) {
+    print("see vendor profile working called -------");
+    HomeRepository().seeVendorProfileRep(ids).then((value) {
+      vendorJobList.value = value.results!.jobs!;
+      print("vendor job hlw bro +++++ ${value.results!.id!.toString()}");
+      vendorName.value = value.results.name!;
+      vendorImage.value = value.results.avatar;
+      vendorBanner.value = value.results.banner;
+      vendorAbout.value = value.results.about;
+      vendorFav.value = value.results.isFavourite;
+
+
+
+      print("vendor job list length is ${vendorJobList.length}");
+
+      if (value.error == false) {
+        Get.to(SeeVendorProfileJObView());
       } else {
         Get.showSnackbar(Ui.errorSnackBar(
             message: "The Vendor has no profile to show", title: 'Error'.tr));

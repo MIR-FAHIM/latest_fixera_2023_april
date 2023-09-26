@@ -33,6 +33,7 @@ class AuthController extends GetxController {
   final selectLocation = "".obs;
   final selectRole = "".obs;
   final selectCat = "".obs;
+  final signInVisible = 0.obs;
   final userID = "".obs;
   final selectEmployee = "".obs;
   final selectEmployeeIndex = 0.obs;
@@ -141,7 +142,7 @@ class AuthController extends GetxController {
   }
 
   loginController() async {
-    visible.value++;
+    signInVisible.value++;
     AuthRepository()
         .userLogin(email.value.text, passController.value.text)
         .then((e) async {
@@ -149,13 +150,13 @@ class AuthController extends GetxController {
       if (e != null) {
         var data = LoginModel.fromJson(e);
         await Get.find<AuthService>().setUser(data);
-        visible.value = 0;
+        signInVisible.value = 0;
         print(
             "hlw bro ++++++++++ ${Get.find<AuthService>().isAuth.toString()}");
         Get.offAllNamed(Routes.BASE);
       } else {
         print("error ++++++++++++++");
-        visible.value = 0;
+        signInVisible.value = 0;
       }
     });
   }

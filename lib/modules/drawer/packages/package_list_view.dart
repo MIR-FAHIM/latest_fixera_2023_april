@@ -26,6 +26,7 @@ class PackagesListView extends GetView<BuyCreditController> {
       body: Obx(() {
         return SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
           children: [
             controller.packageList.value == null
             ? Center(
@@ -74,34 +75,41 @@ class PackagesListView extends GetView<BuyCreditController> {
                               ],
                             ),
                           ),
-                          controller.packageModel.value.results!.isAlreadyPurchase == false || controller.packageModel.value.results!.isPendingRequest == false
+                          controller.packageModel.value.results!.isAlreadyPurchase == false && controller.packageModel.value.results!.isPendingRequest == false
                         ?   InkWell(
                             onTap: () async {
                               controller.buyPackageController(data.id);
                             },
                             child: Center(
-                              child: AnimatedContainer(
-                                duration: Duration(seconds: 2),
-                                height: controller.visible.value == 1 ? 50 : 60,
-                                width: controller.visible.value == 1 ? 50 : 140,
-                                decoration: BoxDecoration(
-                                    color: AppColors.ccsYelow,
-                                    borderRadius: BorderRadius.circular(
-                                        controller.visible.value == 1 ? 60 : 10)),
-                                alignment: Alignment.center,
-                                child: controller.visible.value == 1
-                                    ? Center(child: CircularProgressIndicator())
-                                    : Text(
-                                  "Buy Package",
-                                  style: TextStyle(
-                                    color: AppColors.backgroundColor,
-                                    fontSize: 14,
-                                  ),
-                                ),
+                              child: Obx(
+                             () {
+                                  return AnimatedContainer(
+                                    duration: Duration(seconds: 2),
+                                    height: controller.visible.value == 1 ? 50 : 60,
+                                    width: controller.visible.value == 1 ? 50 : 140,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.ccsYelow,
+                                        borderRadius: BorderRadius.circular(
+                                            controller.visible.value == 1 ? 60 : 10)),
+                                    alignment: Alignment.center,
+                                    child: controller.visible.value == 1
+                                        ? Center(child: CircularProgressIndicator())
+                                        : Text(
+                                      "Buy Package",
+                                      style: TextStyle(
+                                        color: AppColors.backgroundColor,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  );
+                                }
                               ),
                             ),
                           )
-                          : Container(),
+                          : Container(
+                            child: Text("Already Purchased", style: TextStyle(color: Colors.white,),
+                          ),
+                          )
                         ],
                       ),
                     );

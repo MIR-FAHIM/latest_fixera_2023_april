@@ -62,65 +62,65 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                   //
                   // ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * .4,
-                        child: TextFormField(
-                          readOnly: true,
-                          maxLines: 1,
-                          controller: controller.projectContactName.value,
-                          decoration: new InputDecoration(
-                            labelText: 'Name',
-                            // suffixIcon: Icon(
-                            //   Icons.email_outlined,
-                            // ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.trim().isEmpty)
-                              return "Email is Required";
-                            else if (!GetUtils.isEmail(value.trim()))
-                              return "Please enter valid email";
-                            else
-                              return null;
-                          },
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .4,
-                        child: TextFormField(
-                          readOnly: true,
-                          maxLines: 1,
-                          controller: controller.projectPhoneNo.value,
-                          decoration: new InputDecoration(
-                            labelText: 'Phone',
-                            // suffixIcon: Icon(
-                            //   Icons.email_outlined,
-                            // ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.trim().isEmpty)
-                              return "Email is Required";
-                            else if (!GetUtils.isEmail(value.trim()))
-                              return "Please enter valid email";
-                            else
-                              return null;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Container(
+                  //       width: MediaQuery.of(context).size.width * .4,
+                  //       child: TextFormField(
+                  //         readOnly: true,
+                  //         maxLines: 1,
+                  //         controller: controller.projectContactName.value,
+                  //         decoration: new InputDecoration(
+                  //           labelText: 'Name',
+                  //           // suffixIcon: Icon(
+                  //           //   Icons.email_outlined,
+                  //           // ),
+                  //           border: OutlineInputBorder(
+                  //             borderRadius: BorderRadius.all(
+                  //               Radius.circular(10.0),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         validator: (value) {
+                  //           if (value!.trim().isEmpty)
+                  //             return "Email is Required";
+                  //           else if (!GetUtils.isEmail(value.trim()))
+                  //             return "Please enter valid email";
+                  //           else
+                  //             return null;
+                  //         },
+                  //       ),
+                  //     ),
+                  //     Container(
+                  //       width: MediaQuery.of(context).size.width * .4,
+                  //       child: TextFormField(
+                  //         readOnly: true,
+                  //         maxLines: 1,
+                  //         controller: controller.projectPhoneNo.value,
+                  //         decoration: new InputDecoration(
+                  //           labelText: 'Phone',
+                  //           // suffixIcon: Icon(
+                  //           //   Icons.email_outlined,
+                  //           // ),
+                  //           border: OutlineInputBorder(
+                  //             borderRadius: BorderRadius.all(
+                  //               Radius.circular(10.0),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         validator: (value) {
+                  //           if (value!.trim().isEmpty)
+                  //             return "Email is Required";
+                  //           else if (!GetUtils.isEmail(value.trim()))
+                  //             return "Please enter valid email";
+                  //           else
+                  //             return null;
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
 
                   SizedBox(height: 20),
                   Text(
@@ -205,6 +205,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
+                            keyboardType: TextInputType.number,
                             maxLines: 1,
                             controller: controller.customPrice.value,
                             decoration: new InputDecoration(
@@ -380,13 +381,19 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                           // ),
                           SizedBox(height: 20),
                           Container(
-                            padding: EdgeInsets.only(top: 10, bottom: 14, left: 20, right: 10),
-                            margin: const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                            padding: EdgeInsets.only(
+                                top: 10, bottom: 14, left: 20, right: 10),
+                            margin: const EdgeInsets.only(
+                                left: 15, right: 15, top: 10, bottom: 10),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
-                                BoxShadow(color: const Color(0xFF652981).withOpacity(0.2), blurRadius: 2, offset: const Offset(0, 2)),
+                                BoxShadow(
+                                    color: const Color(0xFF652981)
+                                        .withOpacity(0.2),
+                                    blurRadius: 2,
+                                    offset: const Offset(0, 2)),
                               ],
                               //   border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))
                             ),
@@ -404,15 +411,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                                   child: TextFormField(
                                     readOnly: true,
                                     onTap: () {
-
                                       controller.selectStartDate(context);
-
-
-
-
-
-
-
                                     },
                                     controller: controller.startDateInput,
                                     keyboardType: TextInputType.phone,
@@ -429,7 +428,6 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                                     style: Get.textTheme.bodyText2,
                                     textAlign: TextAlign.start,
                                     cursorColor: const Color(0xFF652981),
-
                                   ),
                                 )
                               ],
@@ -437,13 +435,19 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                           ),
                           SizedBox(height: 10),
                           Container(
-                            padding: EdgeInsets.only(top: 10, bottom: 14, left: 20, right: 10),
-                            margin: const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                            padding: EdgeInsets.only(
+                                top: 10, bottom: 14, left: 20, right: 10),
+                            margin: const EdgeInsets.only(
+                                left: 15, right: 15, top: 10, bottom: 10),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
-                                BoxShadow(color: const Color(0xFF652981).withOpacity(0.2), blurRadius: 2, offset: const Offset(0, 2)),
+                                BoxShadow(
+                                    color: const Color(0xFF652981)
+                                        .withOpacity(0.2),
+                                    blurRadius: 2,
+                                    offset: const Offset(0, 2)),
                               ],
                               //   border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))
                             ),
@@ -460,15 +464,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                                   width: Get.size.width,
                                   child: TextFormField(
                                     onTap: () {
-
                                       controller.selectEndDate(context);
-
-
-
-
-
-
-
                                     },
                                     controller: controller.endDateInput,
                                     keyboardType: TextInputType.phone,
@@ -485,13 +481,11 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                                     style: Get.textTheme.bodyText2,
                                     textAlign: TextAlign.start,
                                     cursorColor: const Color(0xFF652981),
-
                                   ),
                                 )
                               ],
                             ),
                           ),
-
                         ],
                       ),
                     ),
@@ -504,11 +498,10 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 1.2,
+                      height: MediaQuery.of(context).size.height * 1.25,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
                           Text(
                             "Project Cost",
                             style: TextStyle(
@@ -554,7 +547,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width *.4,
+                                width: MediaQuery.of(context).size.width * .4,
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
                                   maxLines: 1,
@@ -581,7 +574,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width *.4,
+                                width: MediaQuery.of(context).size.width * .4,
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
                                   maxLines: 1,
@@ -614,7 +607,8 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                           ),
                           Text(
                             "Project Categories",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14),
                           ),
                           SizedBox(height: 10),
                           Container(
@@ -643,14 +637,14 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                                   .map<DropdownMenuItem>((value) {
                                 return DropdownMenuItem(
                                   value: value.key,
-                                  child: Obx(
-                                     () {
-                                      return CheckboxListTile(
-                                          value: controller.projectCat.contains(value.key),
-                                          onChanged: (isChecked) => controller.itemChange(value.key, isChecked!),
-                                          title: Text(value.value.toString()));
-                                    }
-                                  ),
+                                  child: Obx(() {
+                                    return CheckboxListTile(
+                                        value: controller.projectCat
+                                            .contains(value.key),
+                                        onChanged: (isChecked) => controller
+                                            .itemChange(value.key, isChecked!),
+                                        title: Text(value.value.toString()));
+                                  }),
                                 );
                               }).toList(),
                             ),
@@ -688,14 +682,14 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                                   .map<DropdownMenuItem>((value) {
                                 return DropdownMenuItem(
                                   value: value.key,
-                                  child: Obx(
-                                     () {
-                                      return CheckboxListTile(
-                                          value: controller.selectedLangList.contains(value.key),
-                                          onChanged: (isChecked) => controller.langChange(value.key, isChecked!),
-                                          title: Text(value.value.toString()));
-                                    }
-                                  ),
+                                  child: Obx(() {
+                                    return CheckboxListTile(
+                                        value: controller.selectedLangList
+                                            .contains(value.key),
+                                        onChanged: (isChecked) => controller
+                                            .langChange(value.key, isChecked!),
+                                        title: Text(value.value.toString()));
+                                  }),
                                 );
                               }).toList(),
                             ),
@@ -781,16 +775,19 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                             child: DropdownButton(
                               //underline: SizedBox(),
                               isExpanded: true,
-                              value: controller.propertyTypeSelect.value,
+                              value: controller.locationSelect.value,
                               // icon: const Icon(Icons.arrow_downward),
                               iconSize: 24,
                               elevation: 16,
                               style: const TextStyle(color: Colors.deepPurple),
                               underline: SizedBox(),
                               onChanged: (newValue) {
-                                controller.propertyTypeSelect.value = newValue;
+                                controller.locationSelect.value = newValue;
+                                controller.locationId.value = newValue;
+                                print("my locationid is ${controller.locationId.value}");
+
                               },
-                              items: controller.propertyTypeList
+                              items: controller.locationList
                                   .map<DropdownMenuItem>((value) {
                                 return DropdownMenuItem(
                                   value: value.key,
@@ -901,7 +898,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                               }
                             },
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 10),
                           controller.isAttachment.value == true
                               ? Row(
                                   mainAxisAlignment:
@@ -951,34 +948,28 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 10,
+                  ),
 
                   InkWell(
                     onTap: () {
-                      if(
-
-
-                           controller.customPriceProjectSelect.value== "" ||
-                           controller.projectCost.value.text == "" ||
-                           controller.customPrice.value.text== "" ||
-                           controller.startDateInput.value.text== "" ||
-                           controller.endDateInput.value.text== ""
-
-
-
-                      ){
+                      if (controller.customPriceProjectSelect.value == "" ||
+                          controller.projectCost.value.text == "" ||
+                          controller.customPrice.value.text == "" ||
+                          controller.startDateInput.value.text == "" ||
+                          controller.endDateInput.value.text == "") {
                         Get.showSnackbar(Ui.errorSnackBar(
-                            message:"Please check all the filed", title: 'Error'.tr));
+                            message: "Please check all the filed",
+                            title: 'Error'.tr));
                       } else {
-
                         controller.createJobProjectLeadMultipart();
                       }
-
                     },
                     child: Center(
                       child: AnimatedContainer(
                         duration: Duration(seconds: 2),
-                        height: controller.visible.value == 1 ? 50 : 60,
+                        height: controller.visible.value == 1 ? 40 : 40,
                         width: controller.visible.value == 1 ? 100 : 200,
                         decoration: BoxDecoration(
                             color: Colors.green,

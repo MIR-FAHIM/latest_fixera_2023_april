@@ -118,7 +118,7 @@ class ProfessionalInfoView extends GetView<AuthController> {
                       child: DropdownSearch<String>(
                         mode: Mode.MENU,
                         dropdownSearchDecoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(0),
+                          contentPadding: EdgeInsets.all(5),
                           focusColor: Color(0xFF652981),
                           border: OutlineInputBorder(
                             borderSide:
@@ -218,7 +218,7 @@ class ProfessionalInfoView extends GetView<AuthController> {
                             width: _size.width * .45,
                             child: RadioListTile(
                               title: Text(
-                                "Lead MarketPlaces",
+                                "Construction Company",
                                 style: TextStyle(fontSize: 12),
                               ),
                               value: 1,
@@ -322,7 +322,7 @@ class ProfessionalInfoView extends GetView<AuthController> {
                                 child: DropdownSearch<String>(
                                   mode: Mode.MENU,
                                   dropdownSearchDecoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(0),
+                                    contentPadding: EdgeInsets.all(5),
                                     focusColor: Color(0xFF652981),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(

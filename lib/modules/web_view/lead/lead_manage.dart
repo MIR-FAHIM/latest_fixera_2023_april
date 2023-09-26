@@ -23,6 +23,8 @@ class _projectManageWebViewClassState extends State<LeadManageWebView> {
         },
         onPageStarted: (String url) async {
 
+          print("my lead url is $url");
+
 
 
         },

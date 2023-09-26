@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/invoice_list.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/payment_details_web.dart';
+import 'package:latest_fixera_2023/modules/web_view/project_web/proposal_estimation_web.dart';
+import 'package:latest_fixera_2023/modules/web_view/job_details/bid_now_web.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
@@ -8,7 +12,8 @@ import 'package:get/get.dart';
 
 class ProposalWebView extends StatefulWidget {
   String? url;
-  ProposalWebView({this.url});
+
+  ProposalWebView({this.url,});
   @override
   _dashboardWebViewClassState createState() => _dashboardWebViewClassState();
 }
@@ -30,7 +35,7 @@ class _dashboardWebViewClassState extends State<ProposalWebView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
-        title: Text("Dashboard"),
+        title: Text("Proposals"),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -54,7 +59,47 @@ class _dashboardWebViewClassState extends State<ProposalWebView> {
                           },
                           onWebResourceError: (WebResourceError error) {},
                           onNavigationRequest: (NavigationRequest request) {
-                            return NavigationDecision.navigate;
+                            if (request.url.contains('proposal/estimation') == true) {
+                              Get.to(
+                                ProposalEstimationWebView(
+                                request.url,
+                                  "Estimation"
+
+                                ),
+                              );
+                              return NavigationDecision.prevent;
+                            }
+                            //job/tranfer_payment/summary/56/11/15
+                            if (request.url.contains('project/invoice/list/') == true) {
+                              Get.to(
+                                InvoiceWebList(
+                                   request.url,
+                                  "Invoice"
+
+                                ),
+                              );
+                              return NavigationDecision.prevent;
+                            }
+                            if (request.url.contains('job/tranfer_payment/summary') == true) {
+                              Get.to(
+                                PaymentDetailsWebView(
+                                 url: request.url,
+
+                                ),
+                              );
+                              return NavigationDecision.prevent;
+                            }
+                            if (request.url.contains('payment-process') ==
+                                true) {
+                              Get.to(
+                                BidNowWeb(
+                                  url: request.url,
+                                ),
+                              );
+                              return NavigationDecision.prevent;
+                            } else {
+                              return NavigationDecision.navigate;
+                            }
                           },
                         ),
                       )
