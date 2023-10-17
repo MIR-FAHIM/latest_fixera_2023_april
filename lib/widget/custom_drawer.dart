@@ -417,7 +417,7 @@ class NavDrawer extends StatelessWidget {
                                       Get.to(DeactivateWebView());
                                     },
                                     child: Text(
-                                      "De-active Account ",
+                                      "Delete Account ",
                                       softWrap: true,
                                     ),
                                   ),
@@ -702,7 +702,7 @@ class NavDrawer extends StatelessWidget {
                                       //  AppRoutes.DEACTIVATE_ACCOUNT);
                                     },
                                     child: Text(
-                                      "De-active Account ",
+                                      "Delete Account ",
                                       softWrap: true,
                                     ),
                                   ),
