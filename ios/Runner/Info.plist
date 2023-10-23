@@ -15,11 +15,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>latest_fixera_2023</string>
+	<string>CCS Asia</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-        <string>Photo Library Access Warning</string>
+        <string>This app requires access to the photo library for taking picture of documents and can submit it to the form of Invoice and Estimations. </string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires access to the photo library.</string>
+    <string>This app requires access to the photo library for taking picture of documents and can submit it to the form of Invoice and Estimations. </string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
