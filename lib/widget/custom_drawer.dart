@@ -233,22 +233,22 @@ class NavDrawer extends StatelessWidget {
                         //     Navigator.pushReplacement(context, route);
                         //   },
                         // ),
-                        NavDrawerTile(
-                          navIcon: Icons.credit_card,
-                          navTitle: 'Buy Credit',
-                          onNavPress: () {
-                            Get.toNamed(Routes.CREDITLIST);
-                          //  Get.to(BuyCreditWebView());
-                          },
-                        ),
-                        NavDrawerTile(
-                          navIcon: Icons.grain,
-                          navTitle: 'Packages',
-                          onNavPress: () {
-                            Get.toNamed(Routes.PACKAGELIST);
-                           // Get.to(PackagesWebView());
-                          },
-                        ),
+                        // NavDrawerTile(
+                        //   navIcon: Icons.credit_card,
+                        //   navTitle: 'Buy Credit',
+                        //   onNavPress: () {
+                        //     Get.toNamed(Routes.CREDITLIST);
+                        //   //  Get.to(BuyCreditWebView());
+                        //   },
+                        // ),
+                        // NavDrawerTile(
+                        //   navIcon: Icons.grain,
+                        //   navTitle: 'Packages',
+                        //   onNavPress: () {
+                        //     Get.toNamed(Routes.PACKAGELIST);
+                        //    // Get.to(PackagesWebView());
+                        //   },
+                        // ),
 
                         NavDrawerTile(
                           navIcon: Icons.favorite,
@@ -483,21 +483,21 @@ class NavDrawer extends StatelessWidget {
                             Get.to(LeadTabBar());
                           },
                         ),
-                        NavDrawerTile(
-                          navIcon: Icons.grain,
-                          navTitle: 'Packages',
-                          onNavPress: () {
-                            Get.toNamed(Routes.PACKAGELIST);
-                            // Get.to(PackagesWebView());
-                          },
-                        ),
-                        NavDrawerTile(
-                          navIcon: Icons.payments_outlined,
-                          navTitle: 'Transfer History',
-                          onNavPress: () {
-                            Get.to(TransferWebView());
-                          },
-                        ),
+                        // NavDrawerTile(
+                        //   navIcon: Icons.grain,
+                        //   navTitle: 'Packages',
+                        //   onNavPress: () {
+                        //     Get.toNamed(Routes.PACKAGELIST);
+                        //     // Get.to(PackagesWebView());
+                        //   },
+                        // ),
+                        // NavDrawerTile(
+                        //   navIcon: Icons.payments_outlined,
+                        //   navTitle: 'Transfer History',
+                        //   onNavPress: () {
+                        //     Get.to(TransferWebView());
+                        //   },
+                        // ),
 
                         NavDrawerTile(
                           navIcon: Icons.payments_outlined,
