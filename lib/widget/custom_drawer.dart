@@ -109,8 +109,7 @@ class NavDrawer extends StatelessWidget {
                                           const Padding(
                                         padding: EdgeInsets.all(5.0),
                                         child: Image(
-                                          image: AssetImage(
-                                              'images/img.png'),
+                                          image: AssetImage('images/img.png'),
                                         ),
                                       ),
                                     ),
@@ -123,21 +122,26 @@ class NavDrawer extends StatelessWidget {
                                     height: Get.height * .06,
                                   ),
                                   Text(
-                                    "${Get.find<AuthService>().currentUser.value.userInfo!.firstName}" + " ${Get.find<AuthService>().currentUser.value.userInfo!.lastName}",
+                                    "${Get.find<AuthService>().currentUser.value.userInfo!.firstName}" +
+                                        " ${Get.find<AuthService>().currentUser.value.userInfo!.lastName}",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 16),
                                   ),
-
                                   InkWell(
-                                    onTap: (){
-                                      if(Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+                                    onTap: () {
+                                      if (Get.find<AuthService>()
+                                              .currentUser
+                                              .value
+                                              .userInfo!
+                                              .roleName ==
                                           "contractor") {
-                                        controller.seeContractorProfileController(159);
-
-                                      }else {
-                                        controller.seeVendorProfileController(159);
+                                        controller
+                                            .seeContractorProfileController(
+                                                159);
+                                      } else {
+                                        controller
+                                            .seeVendorProfileController(159);
                                       }
-
                                     },
                                     child: Text(
                                       "Profile",
@@ -300,7 +304,6 @@ class NavDrawer extends StatelessWidget {
                                 children: [
                                   InkWell(
                                     onTap: () {
-
                                       //Get.to(PersonalDetailsWebView());
 
                                       Route route = MaterialPageRoute(
@@ -354,8 +357,7 @@ class NavDrawer extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-
-                                     Get.toNamed(Routes.SENDMAIL);
+                                      Get.toNamed(Routes.SENDMAIL);
                                       // Get.to(() => SendEmailView());
                                     },
                                     child: Text(
@@ -684,7 +686,6 @@ class NavDrawer extends StatelessWidget {
                                   InkWell(
                                     onTap: () {
                                       Get.to(EmailNotificationWebView());
-
                                     },
                                     child: Text(
                                       "Email Notification ",
