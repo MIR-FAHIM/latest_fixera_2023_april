@@ -105,7 +105,7 @@ class _dashboardWebViewClassState extends State<JobDetailsWebView> {
                     //Get.find<AuthService>().apiToken
                     // ..ini
                       ..loadRequest(
-                          Uri.parse("${widget.url}?token=${Get.find<AuthService>().apiToken}"),
+                          Uri.parse("https://ccsforasia.com/api/v1/webview/job/test-3?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Njc2ZvcmFzaWEuY29tL2FwaS92MS9sb2dpbiIsImlhdCI6MTY5ODgxOTQyMCwiZXhwIjoxNzAxNDExNDIwLCJuYmYiOjE2OTg4MTk0MjAsImp0aSI6IjFucHZjbTFDU3NLRTRFVXciLCJzdWIiOjE1LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.oK8N0Rt2bVQJBbypVTgbN9KNZLOG0kktD6JKJ8CvP-M"),
                           ))),
           ],
         ),

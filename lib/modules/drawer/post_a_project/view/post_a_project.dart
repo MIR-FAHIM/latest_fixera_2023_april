@@ -131,7 +131,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * .8,
+                      height: MediaQuery.of(context).size.height * 1.3,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -498,7 +498,7 @@ class PostAProjectFormScreen extends GetView<CreateEstimationController> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 1.25,
+                      height: MediaQuery.of(context).size.height * 1.8,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

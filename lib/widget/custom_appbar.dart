@@ -16,36 +16,31 @@ AppBar navAppBar() {
     //   Icons.menu,
     // ),
     title: GestureDetector(
-
-
       onTap: () {
         // print("Im a useless search");
-      //  Get.toNamed(AppRoutes.SEARCH);
+        //  Get.toNamed(AppRoutes.SEARCH);
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           Container(
             height: 30,
-            width: 250,
+            width: Get.width * .6,
             //color: Colors.white,
 
             child: TextFormField(
-              onTap: (){
+              onTap: () {
                 Get.toNamed(Routes.SEARCHVIEW);
-
               },
-
-readOnly: true,
+              readOnly: true,
               maxLines: 1,
               controller: controller.searchController.value,
-              decoration:  InputDecoration(
+              decoration: InputDecoration(
                 fillColor: Colors.white,
                 focusColor: Colors.white,
                 hoverColor: Colors.white,
-                focusedBorder:OutlineInputBorder(
-                  borderSide:  BorderSide(color: Colors.white, width: 2.0),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white, width: 2.0),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
                 labelText: 'I am looking for',
@@ -62,12 +57,9 @@ readOnly: true,
                   ),
                 ),
                 border: OutlineInputBorder(
-
-                  borderSide:  BorderSide(color: Colors.white, width: 2.0),
-
+                  borderSide: BorderSide(color: Colors.white, width: 2.0),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
-
                   ),
                 ),
               ),

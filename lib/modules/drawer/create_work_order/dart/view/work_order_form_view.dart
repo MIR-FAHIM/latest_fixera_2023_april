@@ -35,7 +35,7 @@ class CreateWorkOrderFormScreen extends GetView<CreateWorkOrderController> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 1.6,
+                      height: MediaQuery.of(context).size.height * 2.5,
                       child: Column(
                         children: [
                           TextFormField(

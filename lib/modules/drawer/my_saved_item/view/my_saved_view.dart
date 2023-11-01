@@ -41,7 +41,7 @@ class MySavedViewScreen extends GetView<HomeViewController> {
 
                       Container(
                         height: MediaQuery.of(context).size.height * .15,
-                        width: MediaQuery.of(context).size.width *8,
+                        width: MediaQuery.of(context).size.width ,
                         color: Colors.white,
                         child: Row(
                           children: [
@@ -54,7 +54,7 @@ class MySavedViewScreen extends GetView<HomeViewController> {
                                 controller.brwsJobChecked.value = false;
                               },
                             ),
-                            Text("Contractor", style: TextStyle(fontSize: 10),),
+                            Text("Contractor", style: TextStyle(fontSize: 8),),
                             Checkbox(
                               value: controller.marketPlaceChecked.value,
                               onChanged: ( newValue) {
@@ -63,7 +63,7 @@ class MySavedViewScreen extends GetView<HomeViewController> {
                                 controller.brwsJobChecked.value = false;
                               },
                             ),
-                            Text("Construction",style: TextStyle(fontSize: 10)),
+                            Text("Construction",style: TextStyle(fontSize: 8)),
                             Checkbox(
                               value: controller.brwsJobChecked.value,
 
@@ -73,7 +73,7 @@ class MySavedViewScreen extends GetView<HomeViewController> {
                                 controller.marketPlaceChecked.value = false;
                               },
                             ),
-                            Text("Browse Projects", style: TextStyle(fontSize: 10)),
+                            Text("Browse Projects", style: TextStyle(fontSize: 8)),
                           ],
                         ),
 
@@ -106,8 +106,8 @@ class MySavedViewScreen extends GetView<HomeViewController> {
 
                                         Center(
                                           child: Container(
-                                            height: MediaQuery.of(context).size.height * .28,
-                                            width: MediaQuery.of(context).size.width * .4,
+                                            height: MediaQuery.of(context).size.height * .38,
+                                            width: MediaQuery.of(context).size.width * .8,
                                             child: Center(
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,

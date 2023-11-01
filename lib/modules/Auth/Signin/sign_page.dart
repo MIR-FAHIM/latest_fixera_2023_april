@@ -24,15 +24,33 @@ class LoginView extends GetView<AuthController> {
 
 
       ),
+      bottomNavigationBar:  Container(
+          height: 50,
+          width: Get.width,
+          color: AppColors.ccsYelow,
+          child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Do not have an account?", style: TextStyle(color: Colors.white),),
+                  InkWell(
+                      onTap: (){
+                        controller.getSignUPDataListControlelr();
+                        controller.pageState.value = 0;
+                        Get.to(SignUpStratView());
+                      },
+                      child: Text("Create Account", style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),)),
+                ],
+              ))),
       body: Obx(
          () {
           return SingleChildScrollView(
 
             child: Container(
-              height: MediaQuery.of(context).size.height -90,
+              height: MediaQuery.of(context).size.height *.85,
               child: Column(
                 children: [
-                  SizedBox(height: 20,),
+                  SizedBox(height: 15,),
                   Container(
                     alignment: Alignment.center,
                     // color: AppColors.backgroundColor,
@@ -52,7 +70,7 @@ class LoginView extends GetView<AuthController> {
                   //   ),
                   // ),
                   // ****** fixera end
-                  SizedBox(height: 20,),
+                  SizedBox(height: 15,),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Container(
@@ -136,7 +154,7 @@ class LoginView extends GetView<AuthController> {
                     ),
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   InkWell(
                     onTap: (){
@@ -144,25 +162,8 @@ class LoginView extends GetView<AuthController> {
                     },
 
                       child: Text("Forgot Password?")),
-                  Spacer(),
-                  Container(
-                    height: 50,
-                      width: Get.width,
-                      color: AppColors.ccsYelow,
-                      child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Do not have an account?", style: TextStyle(color: Colors.white),),
-                          InkWell(
-                            onTap: (){
-                              controller.getSignUPDataListControlelr();
-                              controller.pageState.value = 0;
-                              Get.to(SignUpStratView());
-                            },
-                              child: Text("Create Account", style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),)),
-                        ],
-                      )))
+
+
 
                 ],
               ),

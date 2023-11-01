@@ -42,7 +42,7 @@ class CreateInvoiceFormScreen extends GetView<InvoiceController> {
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Container(
-                          height:MediaQuery.of(context).size.height * .9,
+                          height:MediaQuery.of(context).size.height * 1.5,
                           child: Column(
                             children: [
                               TextFormField(
@@ -305,7 +305,7 @@ class CreateInvoiceFormScreen extends GetView<InvoiceController> {
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Container(
-                          height:MediaQuery.of(context).size.height * .6,
+                          height:MediaQuery.of(context).size.height * .8,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

@@ -53,7 +53,7 @@ class SearchView extends GetView<HomeViewController> {
                                controller.brwsJobChecked.value = false;
                              },
                            ),
-                           Text("Contractor", style: TextStyle(fontSize: 10),),
+                           Text("Contractor", style: TextStyle(fontSize: 8),),
                            Checkbox(
                              value: controller.marketPlaceChecked.value,
                              onChanged: ( newValue) {
@@ -62,7 +62,7 @@ class SearchView extends GetView<HomeViewController> {
                                controller.brwsJobChecked.value = false;
                              },
                            ),
-                           Text("MarketPlace",style: TextStyle(fontSize: 10)),
+                           Text("MarketPlace",style: TextStyle(fontSize: 8)),
                            Checkbox(
                              value: controller.brwsJobChecked.value,
 
@@ -72,7 +72,7 @@ class SearchView extends GetView<HomeViewController> {
                                controller.marketPlaceChecked.value = false;
                              },
                            ),
-                           Text("Browse Projects", style: TextStyle(fontSize: 10)),
+                           Text("Browse Projects", style: TextStyle(fontSize: 8)),
                          ],
                        ),
 
@@ -251,7 +251,7 @@ class SearchView extends GetView<HomeViewController> {
                              SizedBox(height: 10,),
                              controller.languageDrop.value == true ?
                              Container(
-                               height: MediaQuery.of(context).size.height *.2,
+                               height: MediaQuery.of(context).size.height *.3,
                                child: ListView.builder(
                                    physics: NeverScrollableScrollPhysics(),
                                    itemCount: controller.languageList.value.length,
@@ -314,7 +314,7 @@ class SearchView extends GetView<HomeViewController> {
 
                                            Center(
                                              child: Container(
-                                               height: MediaQuery.of(context).size.height * .13,
+                                               height: MediaQuery.of(context).size.height * .2,
                                                width: MediaQuery.of(context).size.width * .6,
                                                child: Center(
                                                  child: Column(
@@ -402,7 +402,7 @@ class SearchView extends GetView<HomeViewController> {
 
                                            Center(
                                              child: Container(
-                                               height: MediaQuery.of(context).size.height * .2,
+                                               height: MediaQuery.of(context).size.height * .3,
                                                width: MediaQuery.of(context).size.width * .4,
                                                child: Center(
                                                  child: Column(
@@ -495,7 +495,7 @@ class SearchView extends GetView<HomeViewController> {
 
                                            Center(
                                              child: Container(
-                                               height: MediaQuery.of(context).size.height * .28,
+                                               height: MediaQuery.of(context).size.height * .3,
                                                width: MediaQuery.of(context).size.width * .7,
                                                child: Center(
                                                  child: Column(
@@ -572,8 +572,13 @@ class SearchView extends GetView<HomeViewController> {
                                                            Get.to(
                                                                JobDetailsWebView(controller.jobURL.value));
                                                          } else {
-
-                                                           controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
+                                                           controller.jobURL.value =
+                                                           data.jobUrl!;
+                                                           controller
+                                                               .callWebController();
+                                                           Get.to(
+                                                               JobDetailsWebView(controller.jobURL.value));
+                                                        //   controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
                                                            // controller
                                                            //     .callPublicController(
                                                            //         data.slug

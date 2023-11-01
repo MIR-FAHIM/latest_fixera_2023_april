@@ -75,7 +75,7 @@ class SeeVendorProfileJObView extends GetView<HomeViewController> {
                                                 child: Container(
                                                   height:
                                                   MediaQuery.of(context).size.height *
-                                                      .24,
+                                                      .4,
                                                   width: MediaQuery.of(context).size.width *
                                                       .4,
                                                   child: Column(
@@ -199,7 +199,15 @@ class SeeVendorProfileJObView extends GetView<HomeViewController> {
                                                                 JobDetailsWebView(controller.jobURL.value));
                                                           } else {
 
-                                                            controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
+                                                            controller.jobURL.value =
+                                                            data.jobUrl!;
+                                                            controller
+                                                                .callWebController();
+                                                            Get.to(
+                                                                JobDetailsWebView(controller.jobURL.value));
+
+
+                                                           // controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
                                                             // controller
                                                             //     .callPublicController(
                                                             //         data.slug

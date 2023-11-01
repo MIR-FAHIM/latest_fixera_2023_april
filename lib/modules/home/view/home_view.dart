@@ -201,12 +201,14 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                                 width: 50,
                                                 color: Colors.grey,
                                                 child: Center(
-                                                  child: controller
-                                                              .featureContractorList[
-                                                                  index]
-                                                              .avatar ==
-                                                          "0"
-                                                      ? Container(
+                                                  child:
+                                                  // controller
+                                                  //             .featureContractorList[
+                                                  //                 index]
+                                                  //             .avatar ==
+                                                  //         "0"
+                                                  //     ?
+                                                  Container(
                                                       color: Colors
                                                           .grey.shade200,
                                                       height: 60,
@@ -214,24 +216,24 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                                       child: Container(
                                                         decoration: BoxDecoration(
 
-                                                            image: DecorationImage(image: AssetImage("images/img.png"))
+                                                            image: DecorationImage(image: AssetImage("images/icons/user.png"))
                                                         ),
                                                       )
                                                   )
-                                                      : CachedNetworkImage(
-                                                          imageUrl: controller
-                                                              .featureContractorList[
-                                                                  index]
-                                                              .avatar!,
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              CircularProgressIndicator(
-                                                            color: Colors.green,
-                                                          ),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              Icon(Icons.error),
-                                                        ),
+                                                      // : CachedNetworkImage(
+                                                      //     imageUrl: controller
+                                                      //         .featureContractorList[
+                                                      //             index]
+                                                      //         .avatar!,
+                                                      //     placeholder: (context,
+                                                      //             url) =>
+                                                      //         CircularProgressIndicator(
+                                                      //       color: Colors.green,
+                                                      //     ),
+                                                      //     errorWidget: (context,
+                                                      //             url, error) =>
+                                                      //         Icon(Icons.error),
+                                                      //   ),
                                                 ),
                                               ),
                                             ),
@@ -256,7 +258,7 @@ class HomeViewScreen extends GetView<HomeViewController> {
                       padding: const EdgeInsets.all(4.0),
                       child: Container(
                         height:  Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
-                            "contractor" ? MediaQuery.of(context).size.height * .4 : MediaQuery.of(context).size.height * .3,
+                            "contractor" ? MediaQuery.of(context).size.height * .6 : MediaQuery.of(context).size.height * .5,
                         child: Center(
                           child: ListView.separated(
                               scrollDirection: Axis.horizontal,
@@ -300,7 +302,7 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                .25,
+                                                .37,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
@@ -374,8 +376,15 @@ class HomeViewScreen extends GetView<HomeViewController> {
                                                       Get.to(
                                                           JobDetailsWebView(data.jobUrl));
                                                     } else {
-
-                                                     controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
+                                                      controller.jobURL.value =
+                                                      data.jobUrl!;
+                                                      controller
+                                                          .callWebController();
+                                                      Get.to(
+                                                          JobDetailsWebView(data.jobUrl));
+                                                      //ios off
+                                                   //  controller.checkPaymentStatus(id: data.id, slug: data.slug, status: data.paymentStatus);
+                                                    //ios end
                                                       // controller
                                                       //     .callPublicController(
                                                       //         data.slug

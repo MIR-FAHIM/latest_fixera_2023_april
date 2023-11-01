@@ -51,7 +51,7 @@ class BaseView extends GetView<BaseController> {
             ),
           ),
           child: SizedBox(
-            width: double.infinity,
+            width: MediaQuery.of(context).size.width,
             height: 60,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -67,7 +67,7 @@ class BaseView extends GetView<BaseController> {
                       }
                     },
                     child: Container(
-                      width: 70,
+                      width: MediaQuery.of(context).size.width*.2,
 
 
                       child: Column(
