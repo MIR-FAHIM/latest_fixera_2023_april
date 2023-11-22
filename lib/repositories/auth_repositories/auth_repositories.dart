@@ -16,7 +16,27 @@ class AuthRepository {
 
     return response;
   }
+  Future verifyResetEmailOtp(
+      {String? email,
 
+        String? otp,
+        String? user,
+      }) async {
+    APIManager _manager = APIManager();
+    print("my user id from register is +++++++++ $user");
+    final response =
+    await _manager.postAPICallWithHeader(ApiUrl.forgotVerifyOtp, {
+      'otp': otp!,
+      'user_id': user!,
+      'email': email!,
+
+    }, {
+      "Accept": "application/json"
+    });
+    print("otp verify response is $response");
+
+    return response;
+  }
   Future verifyEmailOtp(
       {String? email,
       String? pass,
@@ -96,6 +116,37 @@ class AuthRepository {
       },
     );
     print("chane pass response is $response");
+
+    return response;
+  }
+
+
+  // forgot pass from login
+  Future forgotPassFromLogin(
+      String pass,  String conPass, String userID) async {
+    APIManager _manager = APIManager();
+    final response = await _manager.postAPICall(
+      "${ApiUrl.forgotResetPass}?user_id=$userID&password=$pass&password_confirmation=$conPass",
+        {}
+
+
+    );
+    print("reset pass from login pass response is $response");
+
+    return response;
+  }
+
+  // forgot email
+  Future forgotEmailFromLogin(
+      String email, ) async {
+    APIManager _manager = APIManager();
+    final response = await _manager.postAPICall(
+        "${ApiUrl.forgotEmail}?email=$email",
+        {}
+
+
+    );
+    print("reset pass from login pass response is $response");
 
     return response;
   }

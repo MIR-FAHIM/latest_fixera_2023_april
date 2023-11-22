@@ -1,5 +1,6 @@
 
-
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,7 @@ class AuthController extends GetxController {
   var nameController = TextEditingController().obs;
   var lastNameController = TextEditingController().obs;
   var passController = TextEditingController().obs;
+  var oldPassController = TextEditingController().obs;
   var conPassController = TextEditingController().obs;
   var phoneController = TextEditingController().obs;
   final selectLocation = "".obs;
@@ -38,12 +40,16 @@ class AuthController extends GetxController {
   final selectEmployee = "".obs;
   final selectEmployeeIndex = 0.obs;
   final visible = 0.obs;
+  final passLoad = 0.obs;
   final visibleSuccess = 0.obs;
   final pinVisible = 0.obs;
   var pinCodeController = TextEditingController().obs;
   final formKey = GlobalKey<FormState>();
   final grpValue = 0.obs;
   final pageState = 0.obs;
+  final resetEmailLoad = 0.obs;
+  final resetOtpLoad = 0.obs;
+  final resetPassLoad = 0.obs;
   final locatinID = 0.obs;
   final empIndex = 0.obs;
   final agreeOrNor = false.obs;
@@ -117,17 +123,54 @@ class AuthController extends GetxController {
       ));
     }
   }
+  advancedStatusCheck(BuildContext context) async {
+    print("hlw version ________________________");
+    final newVersion = NewVersionPlus(
+      //iOSId: 'com.google.Vespa',
+      androidId: 'com.jayga.app',
+    );
+    var status = await newVersion.getVersionStatus();
+    print("version status ${status!.appStoreLink}");
+    if (status.canUpdate == true) {
+      newVersion.showUpdateDialog(
+        launchMode: LaunchMode.externalApplication,
+        context: context,
+        versionStatus: status,
+        dialogTitle: 'Update Available!',
+        dialogText:
+        'Upgrade Jayga ${status.localVersion} to Jayga ${status.storeVersion}',
+      );
+    }
+  }
+  resetPassFromLogin() {
+   // resetPassLoad.value ++ ;
+    AuthRepository()
+        .forgotPassFromLogin(passController.value.text,conPassController.value.text,userID.value.toString())
+        .then((value) {
+      if (value['error']) {
+      //  resetPassLoad.value = 0;
+      } else {
+      //  resetPassLoad.value = 0;
+        Get.toNamed(Routes.LOGIN);
+        Get.showSnackbar(Ui.successSnackBar(
+            message:value['results']['message'], title: 'Success'.tr));
+      }
+    });
+  }
+  resetEmailFromLogin() {
+    resetEmailLoad.value ++ ;
+    AuthRepository()
+        .forgotEmailFromLogin(email.value.text)
+        .then((value) {
+      if (value['error']) {
+        resetEmailLoad.value = 0;
+      } else {
+        resetEmailLoad.value = 0;
+        userID.value = value["results"]["user_id"].toString();
+       Get.toNamed(Routes.RESETOTP);
 
-  changePass() {
-    // AuthRepository()
-    //     .changePass(email.value.text, phoneController.value.text)
-    //     .then((value) {
-    //   if (value['error']) {
-    //   } else {
-    //     pageState.value = 1;
-    //     Get.to(ProfessionalInfoView());
-    //   }
-    // });
+      }
+    });
   }
   checkEmailExist() {
     AuthRepository()
@@ -176,6 +219,19 @@ class AuthController extends GetxController {
       } else {
         print("error ++++++++++++++");
         visible.value = 0;
+      }
+    });
+  }
+  verifyResetEmailOtpController(){
+    resetOtpLoad.value ++;
+    AuthRepository().verifyResetEmailOtp(email: email.value.text,
+      otp: pinCodeController.value.text,
+      user: userID.value.toString(), ).then((value) {
+      if(value["error"]== false){
+        resetOtpLoad.value = 0;
+        Get.toNamed(Routes.RESETPASS);
+      } else {
+        resetOtpLoad.value = 0;
       }
     });
   }

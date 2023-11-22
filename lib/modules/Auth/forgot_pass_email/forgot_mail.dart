@@ -9,15 +9,15 @@ import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 
 
 
-class ChangePassView extends GetView<AuthController> {
-  const ChangePassView({Key? key}) : super(key: key);
+class ForGotMailView extends GetView<AuthController> {
+  const ForGotMailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.ccsYelow,
-        title: Text("Change Password"),
+        title: Text("Forgot Mail"),
         centerTitle: true,
 
 
@@ -55,9 +55,9 @@ class ChangePassView extends GetView<AuthController> {
                           children: <Widget>[
                             TextFormField(
                               maxLines: 1,
-                              controller: controller.passController.value,
+                              controller: controller.email.value,
                               decoration: new InputDecoration(
-                                labelText: 'Old Password',
+                                labelText: 'Give your email',
                                 suffixIcon: Icon(
                                   Icons.lock_outline,
                                 ),
@@ -67,57 +67,14 @@ class ChangePassView extends GetView<AuthController> {
                                   ),
                                 ),
                               ),
-                              obscureText: true,
+                              obscureText: false,
                               validator: (value) {
                                 if (value!.trim().isEmpty) {
-                                  return "Password is Required";
+                                  return "Email is Required";
                                 }
                               },
                             ),
-                            SizedBox(height: 20),
-                            TextFormField(
-                              maxLines: 1,
-                              controller: controller.passController.value,
-                              decoration: new InputDecoration(
-                                labelText: 'New Password',
-                                suffixIcon: Icon(
-                                  Icons.lock_outline,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10.0),
-                                  ),
-                                ),
-                              ),
-                              obscureText: true,
-                              validator: (value) {
-                                if (value!.trim().isEmpty) {
-                                  return "Password is Required";
-                                }
-                              },
-                            ),
-                            SizedBox(height: 20),
-                            TextFormField(
-                              maxLines: 1,
-                              controller: controller.passController.value,
-                              decoration: new InputDecoration(
-                                labelText: 'Confirm Password',
-                                suffixIcon: Icon(
-                                  Icons.lock_outline,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10.0),
-                                  ),
-                                ),
-                              ),
-                              obscureText: true,
-                              validator: (value) {
-                                if (value!.trim().isEmpty) {
-                                  return "Password is Required";
-                                }
-                              },
-                            ),
+
                             SizedBox(
                               height: 25,
                             ),
@@ -127,22 +84,23 @@ class ChangePassView extends GetView<AuthController> {
                     ),
                     InkWell(
                       onTap: () {
+                        controller.resetEmailFromLogin();
                         //controller.visible.value++;
-                       // controller.loginController();
+                        // controller.loginController();
                       },
                       child: AnimatedContainer(
                         duration: Duration(seconds: 2),
-                        height: controller.visible.value == 1 ? 50 : 60,
-                        width: controller.visible.value == 1 ? 50 : 140,
+                        height: controller.resetEmailLoad.value == 1 ? 50 : 60,
+                        width: controller.resetEmailLoad.value == 1 ? 50 : 140,
                         decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius:
-                            BorderRadius.circular(controller.visible.value == 1 ? 60 : 10)),
+                            BorderRadius.circular(controller.resetEmailLoad.value == 1 ? 60 : 10)),
                         alignment: Alignment.center,
-                        child: controller.visible.value == 1
+                        child: controller.resetEmailLoad.value == 1
                             ? Center(child: CircularProgressIndicator())
                             : Text(
-                          "Change Pass",
+                          "Send OTP",
                           style: TextStyle(
                             color: AppColors.backgroundColor,
                             fontSize: 12,

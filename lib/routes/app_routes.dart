@@ -11,6 +11,7 @@ abstract class Routes {
   static const CREATEESTIMATION = _Paths.CREATEESTIMATION;
   static const MENUPAGE = _Paths.MENUPAGE;
   static const CREDITLIST = _Paths.CREDITLIST;
+  static const FORGOTMAIL = _Paths.FORGOTMAIL;
 
   static const CHANGEPASS = _Paths.CHANGEPASS;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
@@ -23,6 +24,8 @@ abstract class Routes {
   static const PACKAGELIST = _Paths.PACKAGELIST;
   static const SEARCHVIEW = _Paths.SEARCHVIEW;
   static const SENDMAIL = _Paths.SENDMAIL;
+  static const RESETOTP = _Paths.RESETOTP;
+  static const RESETPASS = _Paths.RESETPASS;
 
 }
 
@@ -30,6 +33,7 @@ abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const POSTPROJECT = '/post_project';
+  static const RESETPASS = '/reset-pass';
   static const CREATEESTIMATION = '/estimation';
   static const BASE = '/base';
   static const LOGIN = '/login';
@@ -39,6 +43,9 @@ abstract class _Paths {
   static const CREATEINVOICE = '/create_invoice';
   static const POSTLEAD = '/post-lead';
   static const SENDMAIL = '/sendMail';
+  static const FORGOTMAIL = '/forgot-mail';
+  static const RESETOTP = '/reset-otp';
+
 
   static const SAVEDLIST = '/save-list';
   static const CREDITLIST = '/credit_list';

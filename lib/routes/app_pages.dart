@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:latest_fixera_2023/modules/Auth/Signin/sign_page.dart';
 import 'package:latest_fixera_2023/modules/Auth/binding/auth_binding.dart';
+import 'package:latest_fixera_2023/modules/Auth/forgot_pass_email/change_pass.dart';
+import 'package:latest_fixera_2023/modules/Auth/forgot_pass_email/check_otp_page.dart';
+import 'package:latest_fixera_2023/modules/Auth/forgot_pass_email/forgot_mail.dart';
 import 'package:latest_fixera_2023/modules/base/bindings/base_bindings.dart';
 import 'package:latest_fixera_2023/modules/base/view/base_screen.dart';
 import 'package:latest_fixera_2023/modules/browsejob/view/browse_job_page.dart';
@@ -57,10 +60,28 @@ class AppPages {
       binding: BaseBinding(),
     ),
     GetPage(
+      name: _Paths.RESETPASS,
+      page: () =>  ResetPassView(),
+      binding: AuthBinding(),
+    ),
+
+    GetPage(
       name: _Paths.HOME,
       page: () =>  HomeViewScreen(),
       binding: HomeViewcreenBinding(),
     ),
+    GetPage(
+      name: _Paths.RESETOTP,
+      page: () =>  VerificationViewForReset(),
+      binding: AuthBinding(),
+    ),
+
+    GetPage(
+      name: _Paths.FORGOTMAIL,
+      page: () =>  ForGotMailView(),
+      binding: AuthBinding(),
+    ),
+
     GetPage(
       name: _Paths.SEARCHVIEW,
       page: () =>  SearchView(),

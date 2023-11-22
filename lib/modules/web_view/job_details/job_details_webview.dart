@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'dart:isolate';
-import 'dart:ui';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:latest_fixera_2023/api_provider/api_url.dart';
-import 'package:latest_fixera_2023/modules/home/controller/home_view_controller.dart';
+
 import 'package:latest_fixera_2023/modules/web_view/job_details/bid_now_web.dart';
 import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/services/auth_services.dart';
@@ -19,19 +13,7 @@ import 'package:new_version_plus/new_version_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:get/get.dart';
 
-import '../../drawer/post_a_project/controller/post_project_controller.dart';
 
-
-
-
-import 'package:flutter/material.dart';
-import 'package:latest_fixera_2023/api_provider/api_url.dart';
-import 'package:latest_fixera_2023/modules/web_view/project_web/proposal_wedash.dart';
-import 'package:latest_fixera_2023/routes/app_pages.dart';
-import 'package:latest_fixera_2023/services/auth_services.dart';
-import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:get/get.dart';
 
 class JobDetailsWebView extends StatefulWidget {
   String? url;

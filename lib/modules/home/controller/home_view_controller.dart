@@ -7,6 +7,8 @@ import 'package:latest_fixera_2023/modules/home/view/profile_job_view.dart';
 import 'package:latest_fixera_2023/modules/web_view/job_details/bid_now_web.dart';
 import 'package:latest_fixera_2023/modules/web_view/job_details/job_details_webview.dart';
 import 'dart:async';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:latest_fixera_2023/api_provider/api_url.dart';
@@ -345,6 +347,25 @@ class HomeViewController extends GetxController {
             message: "The Vendor has no profile to show", title: 'Error'.tr));
       }
     });
+  }
+  advancedStatusCheck(BuildContext context) async {
+    print("hlw version ________________________");
+    final newVersion = NewVersionPlus(
+      //iOSId: 'com.google.Vespa',
+      androidId: 'com.jayga.app',
+    );
+    var status = await newVersion.getVersionStatus();
+    print("version status ${status!.appStoreLink}");
+    if (status.canUpdate == true) {
+      newVersion.showUpdateDialog(
+        launchMode: LaunchMode.externalApplication,
+        context: context,
+        versionStatus: status,
+        dialogTitle: 'Update Available!',
+        dialogText:
+        'Upgrade Jayga ${status.localVersion} to Jayga ${status.storeVersion}',
+      );
+    }
   }
   seeContractorProfileController(ids) {
     print("see vendor profile working called -------");

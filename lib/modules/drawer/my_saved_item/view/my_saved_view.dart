@@ -78,7 +78,7 @@ class MySavedViewScreen extends GetView<HomeViewController> {
                         ),
 
 
-
+//2048 x 2732
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),

@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:latest_fixera_2023/modules/Auth/change_pass.dart';
+import 'package:latest_fixera_2023/modules/Auth/forgot_pass_email/change_pass.dart';
 import 'package:latest_fixera_2023/modules/Auth/controller/auth_controller.dart';
 import 'package:latest_fixera_2023/modules/Auth/sign_up/sign_up_start_page.dart';
 import 'package:latest_fixera_2023/modules/Auth/sign_up/signup_page.dart';
+import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 
 
@@ -15,6 +16,7 @@ class LoginView extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
+controller.advancedStatusCheck(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.ccsYelow,
@@ -158,7 +160,7 @@ class LoginView extends GetView<AuthController> {
                   ),
                   InkWell(
                     onTap: (){
-                      Get.to(ChangePassView());
+                    Get.toNamed(Routes.FORGOTMAIL);
                     },
 
                       child: Text("Forgot Password?")),
