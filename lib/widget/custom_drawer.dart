@@ -193,13 +193,13 @@ class NavDrawer extends StatelessWidget {
                           },
                         ),
                         //
-                        // NavDrawerTile(
-                        //   navIcon: Icons.wallet_giftcard_sharp,
-                        //   navTitle: 'Wallet',
-                        //   onNavPress: () {
-                        //     Get.to(WalletTabBar());
-                        //   },
-                        // ),
+                        NavDrawerTile(
+                          navIcon: Icons.wallet_giftcard_sharp,
+                          navTitle: 'Wallet',
+                          onNavPress: () {
+                            Get.to(WalletTabBar());
+                          },
+                        ),
                         NavDrawerTile(
                           navIcon: Icons.payments_outlined,
                           navTitle: 'Invoices',

@@ -27,6 +27,12 @@ class ApiUrl {
       "$baseUrl/webview/contractor/jobs/hired?token=";
   static String projectsCompletedUrl =
       "$baseUrl/webview/contractor/jobs/completed?token=";
+
+  static String tranfer_payment =
+      "$baseUrl/webview/contractor/job/tranfer_payment/summary?token=";
+
+  static String incomehistory_contractor =
+      "$baseUrl/webview/contractor/income/history?token=";
   static String messageCenterUrl = "$baseUrl/webview/message-center?token=";
   static String manage_account = "$baseUrl/webview/profile/settings/manage-account?token=";
  // static String payment_setting = "$baseUrl/webview/contractor/dashboard/payment-settings";

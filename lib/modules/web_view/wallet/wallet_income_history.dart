@@ -37,7 +37,7 @@ class _walletIncomeWebViewClassState extends State<WalletIncomeWebView> {
         },
       ),
     )
-    ..loadRequest(Uri.parse(ApiUrl.projectsOngoingUrl+Get.find<AuthService>().apiToken));
+    ..loadRequest(Uri.parse(ApiUrl.incomehistory_contractor+Get.find<AuthService>().apiToken));
   void initState() {
     super.initState();
 

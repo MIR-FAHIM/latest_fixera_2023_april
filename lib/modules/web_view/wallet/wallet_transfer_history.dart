@@ -37,7 +37,7 @@ class _walletTransferWebViewClassState extends State<WalletTransferWebView> {
         },
       ),
     )
-    ..loadRequest(Uri.parse(ApiUrl.projectsOngoingUrl+Get.find<AuthService>().apiToken));
+    ..loadRequest(Uri.parse(ApiUrl.tranfer_payment+Get.find<AuthService>().apiToken));
   void initState() {
     super.initState();
 
