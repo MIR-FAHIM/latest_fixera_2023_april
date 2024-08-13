@@ -33,6 +33,7 @@ class AuthController extends GetxController {
   var conPassController = TextEditingController().obs;
   var phoneController = TextEditingController().obs;
   final selectLocation = "".obs;
+  final refCode = "".obs;
   final selectRole = "".obs;
   final selectCat = "".obs;
   final signInVisible = 0.obs;
@@ -127,7 +128,7 @@ class AuthController extends GetxController {
     print("hlw version ________________________");
     final newVersion = NewVersionPlus(
       //iOSId: 'com.google.Vespa',
-      androidId: 'com.jayga.app',
+      androidId: 'com.ccs_asia.app',
     );
     var status = await newVersion.getVersionStatus();
     print("version status ${status!.appStoreLink}");
@@ -138,7 +139,7 @@ class AuthController extends GetxController {
         versionStatus: status,
         dialogTitle: 'Update Available!',
         dialogText:
-        'Upgrade Jayga ${status.localVersion} to Jayga ${status.storeVersion}',
+        'Upgrade CCS Asia ${status.localVersion} to  ${status.storeVersion}',
       );
     }
   }
@@ -207,9 +208,14 @@ class AuthController extends GetxController {
   registerController(String signature) async {
     visible.value++;
     AuthRepository()
-        .userRegister(email: email.value.text, phone: phoneController.value.text, firstName: nameController.value.text, lastName: lastNameController.value.text,
-    role: selectRole.value, catOrEmp: 1.toString(), pass: passController.value.text,
-        conPass: conPassController.value.text, locations: locatinID.value , initialsignature:signature!)
+        .userRegister(email: email.value.text, phone: phoneController.value.text,
+        firstName: nameController.value.text, lastName: lastNameController.value.text,
+    role: selectRole.value,
+        refcode: Get.find<AuthService>().refId.value,
+        catOrEmp: 1.toString(), pass: passController.value.text,
+        conPass: conPassController.value.text,
+        locations: locatinID.value , initialsignature:signature!,
+    )
         .then((e) async {
       print("my register data");
       if (e != null) {

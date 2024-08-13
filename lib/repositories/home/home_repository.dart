@@ -109,6 +109,36 @@ class HomeRepository {
     );
     return GetLeadMarketVendorModel.fromJson(response);
   }
+  Future referralUsedListRep() async {
+    print("api token is ${Get.find<AuthService>().apiToken}");
+    APIManager _manager = APIManager();
+    final response = await _manager.getWithHeader(
+      ApiUrl.getRefUserList,
+
+
+      {"Authorization": "Bearer ${Get.find<AuthService>().apiToken}",
+        "Accept": "application/json"
+      },
+    );
+    return response;
+  }
+
+  Future generateRefCode() async {
+    print("api token is ${Get.find<AuthService>().apiToken}");
+    APIManager _manager = APIManager();
+    final response = await _manager.postAPICallWithHeader(
+      ApiUrl.generateCode,
+
+
+{},
+
+      {"Authorization": "Bearer ${Get.find<AuthService>().apiToken}",
+        "Accept": "application/json"
+      },
+    );
+    return response;
+  }
+
 
   Future<SeeVendorProfileModel> seeVendorProfileRep(id) async {
     print("api token is ${Get.find<AuthService>().apiToken}");

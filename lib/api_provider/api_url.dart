@@ -19,6 +19,9 @@ class ApiUrl {
   static String checkPaymentStatus = '$baseUrl/check-job-payment-status';
 
   static String getContactorList = '$baseUrl/search-results';
+  static String getRefUserList = '$baseUrl/referrals';
+  static String generateCode = '$baseUrl/referrals';
+  static String referralListUsed = '$baseUrl/referrals';
   static String seeVendorProfile = '$baseUrl/vendor/profile';
   static String projectsOngoingUrl =
       "$baseUrl/webview/contractor/jobs/hired?token=";

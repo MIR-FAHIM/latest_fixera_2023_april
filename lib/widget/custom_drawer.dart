@@ -261,6 +261,14 @@ class NavDrawer extends StatelessWidget {
                             Get.toNamed(Routes.SAVEDLIST);
                           },
                         ),
+
+                        NavDrawerTile(
+                          navIcon: Icons.screen_share,
+                          navTitle: 'Referrals',
+                          onNavPress: () {
+                            Get.toNamed(Routes.REFFERAL);
+                          },
+                        ),
                         NavDrawerTile(
                           navIcon: Icons.dashboard,
                           navTitle: 'How Its work',
@@ -453,6 +461,7 @@ class NavDrawer extends StatelessWidget {
                           navTitle: 'Logout',
                           onNavPress: () async {
                             Get.find<AuthService>().removeCurrentUser();
+                            Get.find<AuthService>().removeRefCode();
 
                             Get.toNamed(Routes.SPLASHSCREEN);
                           },
@@ -514,6 +523,13 @@ class NavDrawer extends StatelessWidget {
                           navTitle: 'My Saved Items',
                           onNavPress: () {
                             Get.toNamed(Routes.SAVEDLIST);
+                          },
+                        ),
+                        NavDrawerTile(
+                          navIcon: Icons.screen_share,
+                          navTitle: 'Referrals',
+                          onNavPress: () {
+                            Get.toNamed(Routes.REFFERAL);
                           },
                         ),
                         NavDrawerTile(

@@ -21,6 +21,7 @@ abstract class Routes {
   static const CREATEINVOICE = _Paths.CREATEINVOICE;
   static const POSTLEAD = _Paths.POSTLEAD;
   static const SAVEDLIST = _Paths.SAVEDLIST;
+  static const REFFERAL = _Paths.REFFERAL;
   static const PACKAGELIST = _Paths.PACKAGELIST;
   static const SEARCHVIEW = _Paths.SEARCHVIEW;
   static const SENDMAIL = _Paths.SENDMAIL;
@@ -40,6 +41,7 @@ abstract class _Paths {
   static const CONTRACTORLISTVIEW = '/contractorlistview';
   static const LEADMARKET = '/leadmarket';
   static const CREATEWORKORDER = '/createworkorder';
+  static const REFFERAL = '/REFFERAL';
   static const CREATEINVOICE = '/create_invoice';
   static const POSTLEAD = '/post-lead';
   static const SENDMAIL = '/sendMail';

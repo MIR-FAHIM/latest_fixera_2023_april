@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:latest_fixera_2023/modules/Auth/controller/auth_controller.dart';
 import 'package:latest_fixera_2023/modules/Auth/sign_up/professional_info.dart';
+import 'package:latest_fixera_2023/routes/app_pages.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 
@@ -378,7 +379,9 @@ class SignUpStratView extends GetView<AuthController> {
                           style: TextStyle(color: Colors.white),
                         ),
                         InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.LOGIN);
+                            },
                             child: Text(
                               "Login Account",
                               style:

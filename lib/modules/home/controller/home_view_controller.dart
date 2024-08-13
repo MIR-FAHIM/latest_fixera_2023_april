@@ -224,25 +224,25 @@ class HomeViewController extends GetxController {
 
 
 
-    Ui.showAwesomeDialog(
-        value["results"]["modal_header"], value["results"]["modal_body_message_one"] +value["results"]["modal_body_message_two"] + value["results"]["modal_body_message_three"],
-        AppColors.primaryColor, () {
-          callPublicController(slug, id, 'public').then((){
-            print("hlw payment $value");
-            browseJobListCOntroller();
-            Get.back();
-          });
-
-    },
-      () {
-        callPublicController(slug, id, 'private').then((){
-          print("hlw payment $value");
-          browseJobListCOntroller();
-          Get.back();
-        });
-    }
-
-        );
+    // Ui.showAwesomeDialog(
+    //     value["results"]["modal_header"], value["results"]["modal_body_message_one"] +value["results"]["modal_body_message_two"] + value["results"]["modal_body_message_three"],
+    //     AppColors.primaryColor, () {
+    //       callPublicController(slug, id, 'public').then((){
+    //         print("hlw payment $value");
+    //         browseJobListCOntroller();
+    //         Get.back();
+    //       });
+    //
+    // },
+    //   () {
+    //     callPublicController(slug, id, 'private').then((){
+    //       print("hlw payment $value");
+    //       browseJobListCOntroller();
+    //       Get.back();
+    //     });
+    // }
+    //
+    //     );
 
 
       print("check payment status $value");
@@ -352,7 +352,7 @@ class HomeViewController extends GetxController {
     print("hlw version ________________________");
     final newVersion = NewVersionPlus(
       //iOSId: 'com.google.Vespa',
-      androidId: 'com.jayga.app',
+      androidId: 'com.ccs_asia.app',
     );
     var status = await newVersion.getVersionStatus();
     print("version status ${status!.appStoreLink}");
@@ -363,7 +363,7 @@ class HomeViewController extends GetxController {
         versionStatus: status,
         dialogTitle: 'Update Available!',
         dialogText:
-        'Upgrade Jayga ${status.localVersion} to Jayga ${status.storeVersion}',
+        'Upgrade CCS Asia ${status.localVersion} to  ${status.storeVersion}',
       );
     }
   }

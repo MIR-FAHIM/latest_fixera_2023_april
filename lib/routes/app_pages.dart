@@ -24,6 +24,8 @@ import 'package:latest_fixera_2023/modules/drawer/post_a_project/binding/post_pr
 import 'package:latest_fixera_2023/modules/drawer/post_a_project/view/post_a_project.dart';
 import 'package:latest_fixera_2023/modules/drawer/post_lead/binding/post_lead_binding.dart';
 import 'package:latest_fixera_2023/modules/drawer/post_lead/view/post_lead_view.dart';
+import 'package:latest_fixera_2023/modules/drawer/referral/binding/referal_binding.dart';
+import 'package:latest_fixera_2023/modules/drawer/referral/view/referal_list_view.dart';
 import 'package:latest_fixera_2023/modules/home/binding/home_view_binding.dart';
 import 'package:latest_fixera_2023/modules/home/view/home_view.dart';
 import 'package:latest_fixera_2023/modules/lead_marketplace/view/lead_market_place_list_screen.dart';
@@ -63,6 +65,12 @@ class AppPages {
       name: _Paths.RESETPASS,
       page: () =>  ResetPassView(),
       binding: AuthBinding(),
+    ),
+
+    GetPage(
+      name: _Paths.REFFERAL,
+      page: () =>  ReferalViewcreen(),
+      binding: ReferalBinding(),
     ),
 
     GetPage(

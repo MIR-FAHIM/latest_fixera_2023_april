@@ -10,6 +10,7 @@ initAllServices() async {
   await GetStorage.init();
  // await Get.putAsync<SettingsService>(() async => SettingsService());
   await Get.putAsync<AuthService>(() async => AuthService());
+  await Get.find<AuthService>().handleDeepLink();
   Get.log('All services started...');
 }
 void main() async {

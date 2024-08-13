@@ -12,6 +12,7 @@ class LoginModel {
   bool? error;
   String? accessToken;
   String? tokenType;
+
   int? expiryTime;
   UserInfo? userInfo;
 
@@ -21,11 +22,13 @@ class LoginModel {
      this.tokenType,
      this.expiryTime,
      this.userInfo,
+
   });
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
     error: json["error"],
     accessToken: json["access_token"],
+
     tokenType: json["token_type"],
     expiryTime: json["expiry_time"],
     userInfo: UserInfo.fromJson(json["user_info"]),
@@ -35,6 +38,7 @@ class LoginModel {
     "error": error,
     "access_token": accessToken,
     "token_type": tokenType,
+
     "expiry_time": expiryTime,
     "user_info": userInfo!.toJson(),
   };
@@ -44,6 +48,7 @@ class UserInfo {
   int id;
   String firstName;
   String lastName;
+  String? referral;
   String hourlyRate;
   String tagline;
   var locationId;
@@ -77,6 +82,7 @@ class UserInfo {
     required this.profileCompletionStatus,
     this.deviceId,
     this.phone,
+    this.referral,
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
@@ -88,6 +94,7 @@ class UserInfo {
     locationId: json["location_id"],
     country: json["country"],
     address: json["address"],
+    referral: json["referral_code"],
     longitude: json["longitude"],
     latitude: json["latitude"],
     avatar: json["avatar"],
@@ -112,6 +119,7 @@ class UserInfo {
     "latitude": latitude,
     "avatar": avatar,
     "banner": banner,
+    "referral_code": referral,
     "role_id": roleId,
     "role_name": roleName,
     "profile_completion_status": profileCompletionStatus,

@@ -7,7 +7,7 @@ import 'package:latest_fixera_2023/models/auth_model/sign_up_data_model.dart';
 import 'package:latest_fixera_2023/modules/Auth/controller/auth_controller.dart';
 import 'package:latest_fixera_2023/modules/Auth/sign_up/verification_page.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+//import 'package:dropdown_search/dropdown_search.dart';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
@@ -99,54 +99,55 @@ class ProfessionalInfoView extends GetView<AuthController> {
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Location",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 55,
-                      color: Colors.white,
-                      child: DropdownSearch<String>(
-                        mode: Mode.MENU,
-                        dropdownSearchDecoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(5),
-                          focusColor: Color(0xFF652981),
-                          border: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        showSelectedItems: true,
-                        items: controller.locationListFinal.value
-                            .map((item) => item.title.toString())
-                            .toList(),
-                        onChanged: (input) {
-                          // controller.locatinID.value = input;
-                        },
-                        selectedItem: "Canada",
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Text(
+                  //     "Location",
+                  //     textAlign: TextAlign.center,
+                  //     style: TextStyle(
+                  //       fontWeight: FontWeight.bold,
+                  //       fontSize: 16,
+                  //     ),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Container(
+                  //     height: 55,
+                  //     color: Colors.white,
+                  //     child: DropdownSearch<String>(
+                  //       mode: Mode.MENU,
+                  //       dropdownSearchDecoration: InputDecoration(
+                  //         contentPadding: EdgeInsets.all(5),
+                  //         focusColor: Color(0xFF652981),
+                  //         border: OutlineInputBorder(
+                  //           borderSide:
+                  //               BorderSide(color: Colors.black, width: 1.0),
+                  //           borderRadius: BorderRadius.circular(10.0),
+                  //         ),
+                  //         focusedBorder: OutlineInputBorder(
+                  //           borderSide:
+                  //               BorderSide(color: Colors.black, width: 1.0),
+                  //           borderRadius: BorderRadius.circular(10.0),
+                  //         ),
+                  //         enabledBorder: OutlineInputBorder(
+                  //           borderSide:
+                  //               BorderSide(color: Colors.black, width: 1.0),
+                  //           borderRadius: BorderRadius.circular(10.0),
+                  //         ),
+                  //       ),
+                  //       showSelectedItems: true,
+                  //       items: controller.locationListFinal.value
+                  //           .map((item) => item.title.toString())
+                  //           .toList(),
+                  //       onChanged: (input) {
+                  //         // controller.locatinID.value = input;
+                  //       },
+                  //       selectedItem: "Canada",
+                  //     ),
+                  //   ),
+                  // ),
+
                   SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -316,38 +317,38 @@ class ProfessionalInfoView extends GetView<AuthController> {
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
-                              Container(
-                                height: 55,
-                                color: Colors.white,
-                                child: DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  dropdownSearchDecoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(5),
-                                    focusColor: Color(0xFF652981),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.black, width: 1.0),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.black, width: 1.0),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.black, width: 1.0),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                  ),
-                                  showSelectedItems: true,
-                                  items: controller.categoryListFinal.value
-                                      .map((item) => item.title.toString())
-                                      .toList(),
-                                  onChanged: (input) {},
-                                  selectedItem: "Air Duct Cleaning",
-                                ),
-                              ),
+                              // Container(
+                              //   height: 55,
+                              //   color: Colors.white,
+                              //   child: DropdownSearch<String>(
+                              //     mode: Mode.MENU,
+                              //     dropdownSearchDecoration: InputDecoration(
+                              //       contentPadding: EdgeInsets.all(5),
+                              //       focusColor: Color(0xFF652981),
+                              //       border: OutlineInputBorder(
+                              //         borderSide: BorderSide(
+                              //             color: Colors.black, width: 1.0),
+                              //         borderRadius: BorderRadius.circular(10.0),
+                              //       ),
+                              //       focusedBorder: OutlineInputBorder(
+                              //         borderSide: BorderSide(
+                              //             color: Colors.black, width: 1.0),
+                              //         borderRadius: BorderRadius.circular(10.0),
+                              //       ),
+                              //       enabledBorder: OutlineInputBorder(
+                              //         borderSide: BorderSide(
+                              //             color: Colors.black, width: 1.0),
+                              //         borderRadius: BorderRadius.circular(10.0),
+                              //       ),
+                              //     ),
+                              //     showSelectedItems: true,
+                              //     items: controller.categoryListFinal.value
+                              //         .map((item) => item.title.toString())
+                              //         .toList(),
+                              //     onChanged: (input) {},
+                              //     selectedItem: "Air Duct Cleaning",
+                              //   ),
+                              // ),
                             ],
                           ),
                         )

@@ -72,8 +72,10 @@ class AuthRepository {
       String? catOrEmp,
       String? pass,
       String? conPass,
+        String? refcode,
       int? locations,
       String? initialsignature}) async {
+    print("my ref code in register is $refcode");
     APIManager _manager = APIManager();
     final response = await _manager.postAPICallWithHeader(
       ApiUrl.signUpPostUrl,
@@ -82,14 +84,15 @@ class AuthRepository {
         'last_name': lastName!,
         'email': email!,
         "phone": phone!,
-        'role': role!,
+        'role': "vendor",
         "categories": catOrEmp!,
         // "employees" : catOrEmp!,
 
         'password': pass!,
+        'referral_code': refcode,
 
         'password_confirmation': conPass!,
-        'locations': locations!.toString(),
+        'locations': "3",
         "initial-signature": initialsignature!,
       },
       {
