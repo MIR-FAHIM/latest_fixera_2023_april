@@ -494,6 +494,13 @@ class NavDrawer extends StatelessWidget {
                             Get.to(LeadTabBar());
                           },
                         ),
+                        NavDrawerTile(
+                          navIcon: Icons.wallet_giftcard_sharp,
+                          navTitle: 'Wallet',
+                          onNavPress: () {
+                            Get.to(WalletTabBar());
+                          },
+                        ),
                         // NavDrawerTile(
                         //   navIcon: Icons.grain,
                         //   navTitle: 'Packages',
@@ -644,6 +651,8 @@ class NavDrawer extends StatelessWidget {
                                         )
                                       : SizedBox(
                                           child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               InkWell(
                                                 onTap: () {
@@ -656,6 +665,15 @@ class NavDrawer extends StatelessWidget {
                                                 },
                                                 child: Text(
                                                   "Manage Profile",
+                                                  softWrap: true,
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Get.to(PaymentSettingWebView());
+                                                },
+                                                child: Text(
+                                                  "Payment Settings",
                                                   softWrap: true,
                                                 ),
                                               ),

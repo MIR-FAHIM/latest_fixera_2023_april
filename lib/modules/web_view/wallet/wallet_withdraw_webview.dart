@@ -37,7 +37,11 @@ class _walletWithdrawWebViewClassState extends State<WalletWithdrawaWebView> {
         },
       ),
     )
-    ..loadRequest(Uri.parse(ApiUrl.withdrawUrl+Get.find<AuthService>().apiToken));
+    ..loadRequest(Uri.parse( Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+        "contractor"
+        ? ApiUrl.withdrawUrlContractor+Get.find<AuthService>().apiToken
+        : ApiUrl.withdrawUrlConst+Get.find<AuthService>().apiToken
+    ));
   void initState() {
     super.initState();
 

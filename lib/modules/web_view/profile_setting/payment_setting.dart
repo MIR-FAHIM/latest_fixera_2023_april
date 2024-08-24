@@ -41,7 +41,11 @@ class _manageAccountWebViewClassState extends State<PaymentSettingWebView> {
       ),
     )
     ..loadRequest(
-        Uri.parse(ApiUrl.payment_setting + Get.find<AuthService>().apiToken));
+        Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+            "contractor"
+       ? Uri.parse(ApiUrl.payment_setting + Get.find<AuthService>().apiToken)
+       : Uri.parse(ApiUrl.payment_setting_vendor + Get.find<AuthService>().apiToken)
+    );
   void initState() {
     super.initState();
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primaryColor = Color(0xff36d037);// Fixera Color(0xffA0C828);
+  static Color primaryColor = HexColor("#EBAE27");// Fixera Color(0xffA0C828);
   static Color searchBoxColor = Color(0xffA0C828);
   static Color bottomNavColor = Color(0xff838383);
   static Color secondaryColor = Color(0xff0E153D);

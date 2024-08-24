@@ -5,8 +5,9 @@ import 'package:latest_fixera_2023/modules/web_view/project_web/project_ongoing_
 import 'package:latest_fixera_2023/modules/web_view/wallet/wallet_income_history.dart';
 import 'package:latest_fixera_2023/modules/web_view/wallet/wallet_transfer_history.dart';
 import 'package:latest_fixera_2023/modules/web_view/wallet/wallet_withdraw_webview.dart';
+import 'package:latest_fixera_2023/services/auth_services.dart';
 import 'package:latest_fixera_2023/utils/AppColors/app_colors.dart';
-
+import 'package:get/get.dart';
 /// Flutter code sample for [TabBar].
 
 
@@ -22,43 +23,57 @@ class WalletTabBar extends StatefulWidget {
 class _ProjectTabBarState extends State<WalletTabBar> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppColors.primaryColor,
-          title: const Text('Wallet'),
-          bottom: const TabBar(
-            tabs: <Widget>[
-              Tab(
-                text: "Withdraw",
+
+    if(Get.find<AuthService>().currentUser.value.userInfo!.roleName ==
+        "contractor"){
+      return  DefaultTabController(
+        initialIndex: 1,
+        length: 3,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar:
+          AppBar(
+            centerTitle: true,
+            backgroundColor: AppColors.primaryColor,
+            title: const Text('Wallet'),
+            bottom: const TabBar(
+              tabs: <Widget>[
+                Tab(
+                  text: "Withdraw",
+                ),
+                Tab(
+                  text: "Transfer History",
+                ),
+                Tab(
+                  text: "Income History",
+                ),
+              ],
+            ),
+          ),
+          body:  TabBarView(
+            children: <Widget>[
+              Center(
+                child: WalletWithdrawaWebView(),
               ),
-              Tab(
-                text: "Transfer History",
+              Center(
+                child: WalletTransferWebView(),
               ),
-              Tab(
-                text: "Income History",
+              Center(
+                child: WalletIncomeWebView(),
               ),
             ],
           ),
         ),
-        body:  TabBarView(
-          children: <Widget>[
-            Center(
-              child: WalletWithdrawaWebView(),
-            ),
-            Center(
-              child: WalletTransferWebView(),
-            ),
-            Center(
-              child: WalletIncomeWebView(),
-            ),
-          ],
-        ),
-      ),
-    );
+      );
+    }else{
+      return
+              Center(
+                child: WalletWithdrawaWebView(),
+
+
+
+      );
+    }
+
   }
 }

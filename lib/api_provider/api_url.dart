@@ -121,11 +121,15 @@ class ApiUrl {
 
   static String payment_setting =
       "$baseUrl/webview/contractor/dashboard/payment-settings?token=";
+  static String payment_setting_vendor =
+      "$baseUrl/webview/vendor/dashboard/payment-settings?token=";
+  //https://ccsforasia.com/api/v1/webview/vendor/dashboard/payment-settings?token=JWT_TOKEN
   static String project_certification =
       "$baseUrl/webview/contractor/dashboard/project-awards?token=";
   static String incomeHistoryUrl =
       "$baseUrl/webview/contractor/income/history?token=";
-  static String withdrawUrl = "$baseUrl/webview/contractor/withdraw?token=";
+  static String withdrawUrlContractor = "$baseUrl/webview/contractor/withdraw?token=";
+  static String withdrawUrlConst = "$baseUrl/webview/vendor/withdraw?token="; //https://ccsforasia.com/api/v1/webview/vendor/withdraw?token=
   static String leadOngoingUrl = "$baseUrl/webview/vendor/jobs/hired?token=";
 
   static String leadCompletedUrl =
