@@ -81,7 +81,7 @@ class _InAppWebViewExampleScreenState extends State<VendorProfileWeb> {
                 ),
                 //
                 initialUrlRequest: URLRequest(
-                    url: Uri.parse("${ApiUrl.vendorProfileSettingUrl}?token=${Get.find<AuthService>().apiToken}")
+                    url: WebUri("${ApiUrl.vendorProfileSettingUrl}?token=${Get.find<AuthService>().apiToken}")
                 ),
                 onWebViewCreated: (InAppWebViewController controller){
                   inAppWebViewController = controller;

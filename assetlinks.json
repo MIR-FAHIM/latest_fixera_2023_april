@@ -7,3 +7,5 @@
     ["2D:BE:A9:74:52:ED:54:8E:DD:A9:DF:FE:D3:F3:60:4A:5B:03:91:CD:F4:1C:8B:FB:23:DD:EE:A0:F8:10:06:6A"]
   }
 }]
+
+xcrun simctl openurl booted yourScheme://yourDomain.com/path

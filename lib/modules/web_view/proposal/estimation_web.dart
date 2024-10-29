@@ -86,7 +86,7 @@ class _dashboardWebViewClassState extends State<EstimationWeb> {
                 ),
                 //
                 initialUrlRequest: URLRequest(
-                    url: Uri.parse("${widget.url}?token=${Get.find<AuthService>().apiToken}")
+                    url: WebUri("${widget.url}?token=${Get.find<AuthService>().apiToken}")
                 ),
                 onWebViewCreated: (InAppWebViewController controller){
                   print("working on bid now");

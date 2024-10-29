@@ -80,7 +80,7 @@ class _InAppWebViewExampleScreenState extends State<PersonalDetailsWebView> {
           ),
         //
                 initialUrlRequest: URLRequest(
-                    url: Uri.parse("https://ccsforasia.com/api/v1/webview/contractor/profile?token=${Get.find<AuthService>().apiToken}")
+                    url: WebUri("https://ccsforasia.com/api/v1/webview/contractor/profile?token=${Get.find<AuthService>().apiToken}")
                 ),
                 onWebViewCreated: (InAppWebViewController controller){
                   inAppWebViewController = controller;

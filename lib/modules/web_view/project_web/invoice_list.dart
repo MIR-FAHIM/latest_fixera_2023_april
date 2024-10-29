@@ -72,7 +72,7 @@ class _projectManageWebViewClassState extends State<InvoiceWebList> {
 
 
                 },
-                onWebResourceError: (WebResourceError error) {},
+
                 onNavigationRequest: (NavigationRequest request) {
 
                   if (request.url.contains('details') == true) {

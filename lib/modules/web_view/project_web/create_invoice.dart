@@ -88,7 +88,7 @@ class _dashboardWebViewClassState extends State<CreateInvoiceWeb> {
                 ),
                 //
                 initialUrlRequest: URLRequest(
-                    url: Uri.parse("${widget.url}?token=${Get.find<AuthService>().apiToken}")
+                    url: WebUri("${widget.url}?token=${Get.find<AuthService>().apiToken}")
                 ),
                 onLoadStart: (InAppWebViewController controller, url) {
                   print("i am here 11");

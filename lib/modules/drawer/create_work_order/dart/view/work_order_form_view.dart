@@ -180,7 +180,7 @@ class CreateWorkOrderFormScreen extends GetView<CreateWorkOrderController> {
                               children: [
                                 Text(
                                   "Select Start Date".tr,
-                                  style: Get.textTheme.bodyText1,
+                                  style: Get.textTheme.bodyLarge,
                                   textAlign: TextAlign.start,
                                 ),
                                 SizedBox(
@@ -203,7 +203,7 @@ class CreateWorkOrderFormScreen extends GetView<CreateWorkOrderController> {
                                         return null;
                                       }
                                     },
-                                    style: Get.textTheme.bodyText2,
+                                    style: Get.textTheme.bodyMedium,
                                     textAlign: TextAlign.start,
                                     cursorColor: const Color(0xFF652981),
                                   ),
@@ -234,7 +234,7 @@ class CreateWorkOrderFormScreen extends GetView<CreateWorkOrderController> {
                               children: [
                                 Text(
                                   "Select End Date".tr,
-                                  style: Get.textTheme.bodyText1,
+                                  style: Get.textTheme.bodyLarge,
                                   textAlign: TextAlign.start,
                                 ),
                                 SizedBox(
@@ -257,7 +257,7 @@ class CreateWorkOrderFormScreen extends GetView<CreateWorkOrderController> {
                                         return null;
                                       }
                                     },
-                                    style: Get.textTheme.bodyText2,
+                                    style: Get.textTheme.bodyMedium,
                                     textAlign: TextAlign.start,
                                     cursorColor: const Color(0xFF652981),
                                   ),

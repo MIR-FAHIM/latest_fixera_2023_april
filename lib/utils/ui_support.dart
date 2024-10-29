@@ -13,8 +13,8 @@ class Ui {
   static GetSnackBar successSnackBar({String title = 'Success', required String message}) {
     Get.log("[$title] $message");
     return GetSnackBar(
-      titleText: Text(title.tr, style: Get.textTheme.headline6!.merge(const TextStyle(color: Colors.white))),
-      messageText: Text(message, style: Get.textTheme.caption!.merge(const TextStyle(color: Colors.white))),
+      titleText: Text(title.tr, style: Get.textTheme.titleLarge!.merge(const TextStyle(color: Colors.white))),
+      messageText: Text(message, style: Get.textTheme.bodySmall!.merge(const TextStyle(color: Colors.white))),
       snackPosition: SnackPosition.BOTTOM,
       margin: const EdgeInsets.all(20),
       backgroundColor: Colors.green,
@@ -29,8 +29,8 @@ class Ui {
   static GetSnackBar errorSnackBar({String title = 'Something went wrong!', required String message}) {
     Get.log("[$title] $message", isError: true);
     return GetSnackBar(
-      titleText: Text(title.tr, style: Get.textTheme.headline6!.merge(const TextStyle(color: Colors.white))),
-      messageText: Text(message.tr, style: Get.textTheme.caption!.merge(const TextStyle(color: Colors.white))),
+      titleText: Text(title.tr, style: Get.textTheme.titleLarge!.merge(const TextStyle(color: Colors.white))),
+      messageText: Text(message.tr, style: Get.textTheme.bodySmall!.merge(const TextStyle(color: Colors.white))),
       snackPosition: SnackPosition.BOTTOM,
       margin: const EdgeInsets.all(20),
       backgroundColor: Colors.redAccent,
@@ -44,8 +44,8 @@ class Ui {
   static GetSnackBar authenticationErrorSnackBar({required String title, required String message}) {
     Get.log("[$title] $message", isError: true);
     return GetSnackBar(
-      titleText: Text(title.tr, style: Get.textTheme.headline6!.merge(TextStyle(color: Get.theme.primaryColor))),
-      messageText: Text(message.tr, style: Get.textTheme.caption!.merge(TextStyle(color: Get.theme.primaryColor))),
+      titleText: Text(title.tr, style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor))),
+      messageText: Text(message.tr, style: Get.textTheme.bodySmall!.merge(TextStyle(color: Get.theme.primaryColor))),
       snackPosition: SnackPosition.BOTTOM,
       margin: const EdgeInsets.all(20),
       backgroundColor: Colors.redAccent,

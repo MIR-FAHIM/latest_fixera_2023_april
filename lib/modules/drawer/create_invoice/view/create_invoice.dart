@@ -254,7 +254,7 @@ class CreateInvoiceFormScreen extends GetView<InvoiceController> {
                                   children: [
                                     Text(
                                       "Select Date".tr,
-                                      style: Get.textTheme.bodyText1,
+                                      style: Get.textTheme.bodyLarge,
                                       textAlign: TextAlign.start,
                                     ),
                                     SizedBox(
@@ -284,7 +284,7 @@ class CreateInvoiceFormScreen extends GetView<InvoiceController> {
                                             return null;
                                           }
                                         },
-                                        style: Get.textTheme.bodyText2,
+                                        style: Get.textTheme.bodyMedium,
                                         textAlign: TextAlign.start,
                                         cursorColor: const Color(0xFF652981),
 

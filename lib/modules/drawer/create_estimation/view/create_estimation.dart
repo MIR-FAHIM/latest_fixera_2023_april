@@ -805,7 +805,7 @@ class CreateEstimationFormScreen extends GetView<CreateEstimationController> {
                               children: [
                                 Text(
                                   "Authorized Signature Date".tr,
-                                  style: Get.textTheme.bodyText1,
+                                  style: Get.textTheme.bodyLarge,
                                   textAlign: TextAlign.start,
                                 ),
                                 SizedBox(
@@ -835,7 +835,7 @@ class CreateEstimationFormScreen extends GetView<CreateEstimationController> {
                                         return null;
                                       }
                                     },
-                                    style: Get.textTheme.bodyText2,
+                                    style: Get.textTheme.bodyMedium,
                                     textAlign: TextAlign.start,
                                     cursorColor: const Color(0xFF652981),
 

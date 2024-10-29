@@ -50,7 +50,7 @@ class _manageAccountWebViewClassState extends State<InvoiceWebView> {
         },
         onPageStarted: (String url) async {},
         onPageFinished: (String url) {},
-        onWebResourceError: (WebResourceError error) {},
+       // onWebResourceError: (WebResourceError error) {},
         onNavigationRequest: (NavigationRequest request) {
           return NavigationDecision.navigate;
         },
@@ -111,9 +111,9 @@ class _manageAccountWebViewClassState extends State<InvoiceWebView> {
 
 
                             },
-                            onWebResourceError: (WebResourceError error) {
-
-                            },
+                            // onWebResourceError: (WebResourceError error) {
+                            //
+                            // },
                             onNavigationRequest: (NavigationRequest request) {
 
                               if(request.url.contains('show') == true){

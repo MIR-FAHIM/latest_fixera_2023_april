@@ -86,7 +86,7 @@ class _InAppWebViewExampleScreenState extends State<ProjectCertificationWebView>
                 ),
                 //
                 initialUrlRequest: URLRequest(
-                    url: Uri.parse(ApiUrl.project_certification + Get.find<AuthService>().apiToken)
+                    url: WebUri(ApiUrl.project_certification + Get.find<AuthService>().apiToken)
                 ),
                 onWebViewCreated: (InAppWebViewController controller){
                   inAppWebViewController = controller;

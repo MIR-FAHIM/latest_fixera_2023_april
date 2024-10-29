@@ -73,7 +73,7 @@ class _dashboardWebViewClassState extends State<BidNowWeb> {
                 )),
                 //
                 initialUrlRequest: URLRequest(
-                    url: Uri.parse(
+                    url: WebUri(
                         "${widget.url}?token=${Get.find<AuthService>().apiToken}")),
                 onLoadStart: (InAppWebViewController controller, url) {
                   print("onLoadStart++++++++++++++++++++++++++ " +

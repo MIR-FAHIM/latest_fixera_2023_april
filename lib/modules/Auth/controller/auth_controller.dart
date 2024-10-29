@@ -134,7 +134,7 @@ class AuthController extends GetxController {
     print("version status ${status!.appStoreLink}");
     if (status.canUpdate == true) {
       newVersion.showUpdateDialog(
-        launchMode: LaunchMode.externalApplication,
+       // launchMode: LaunchMode.externalApplication,
         context: context,
         versionStatus: status,
         dialogTitle: 'Update Available!',

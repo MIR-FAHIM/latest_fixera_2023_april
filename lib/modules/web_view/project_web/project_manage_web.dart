@@ -66,7 +66,7 @@ class _projectManageWebViewClassState extends State<ProjectManageWebView> {
 
 
                 },
-                onWebResourceError: (WebResourceError error) {},
+
                 onNavigationRequest: (NavigationRequest request) {
                   if (request.url.contains('proposals') == true) {
                     Get.to(
